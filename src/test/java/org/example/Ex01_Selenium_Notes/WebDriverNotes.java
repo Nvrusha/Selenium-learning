@@ -1,4 +1,4 @@
-package org.example.Ex01.Selenium_Basics;
+package org.example.Ex01_Selenium_Notes;
 
 public class WebDriverNotes {
     public static void main(String[] args) {

@@ -1,14 +1,12 @@
-package org.example.Ex01.Selenium_Basics1;
+package org.example.Ex02_Selenium_Basics;
 
-// Test case
+// Test case 1
 //1. Launch browser (chrome).
 //2. Open URL - https://www.opencart.com/index.php?route=cms/demo
 //3. Validate title should be 'OpenCart - Demo'
 //4. Close browser
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
 
 public class FirstTestCase {
     public static void main(String[] args) {
