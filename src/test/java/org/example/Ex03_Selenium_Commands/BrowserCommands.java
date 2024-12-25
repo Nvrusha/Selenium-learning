@@ -5,6 +5,7 @@ public class BrowserCommands {
 
         /*
          *** Browser Commands ***
+
          1. Opens the specified URL in the browser.
         driver.get("https://www.google.com");
 

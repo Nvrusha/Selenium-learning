@@ -1,6 +1,9 @@
 package org.example.Ex03_Selenium_Commands;
 
 public class NavigationCommands {
+
+    // *** Navigation Commands ***
+
     /*
      1. Navigates to a specific URL, similar to driver.get().
      driver.navigate().to("https://www.example.com");
