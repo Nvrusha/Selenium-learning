@@ -5,7 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 public class OptionsClass {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         // Set up ChromeOptions
         ChromeOptions options = new ChromeOptions();
@@ -23,6 +23,10 @@ public class OptionsClass {
 
         // Perform some actions
         System.out.println("Page title is: " + driver.getTitle());
+
+        // Pauses the execution of the current thread for 3 seconds (3000 milliseconds)
+        // This is useful for adding delays between actions in automation tests or simulations.
+        Thread.sleep(3000);
 
         // Quit the browser
         driver.quit();
