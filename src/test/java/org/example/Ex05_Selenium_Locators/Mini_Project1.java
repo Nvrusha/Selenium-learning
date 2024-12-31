@@ -25,7 +25,6 @@ public class Mini_Project1 {
         chromeOptions.addArguments("--start-maximized");
 
         // Step 2: Initialize the ChromeDriver and open the login URL
-        System.out.println("Navigating to the login page...");
         WebDriver driver = new ChromeDriver(chromeOptions);
         driver.get("https://app.vwo.com/#/login");
 
