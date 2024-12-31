@@ -17,13 +17,15 @@ public class Mini_Project1 {
          3. Locate the password input box and enter the password: admin
          4. Locate and click on the submit button
          5. Verify that the error message is displayed: "Your email, password, IP address, or location did not match"
-         Step 1: Set up ChromeOptions to maximize the browser window
+
         */
 
+        // Step 1: Set up ChromeOptions to maximize the browser window
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--start-maximized");
 
         // Step 2: Initialize the ChromeDriver and open the login URL
+        System.out.println("Navigating to the login page...");
         WebDriver driver = new ChromeDriver(chromeOptions);
         driver.get("https://app.vwo.com/#/login");
 
