@@ -2,86 +2,113 @@ package org.example.Ex06_Advanced_Locators.XPath;
 
 public class BasicNotes {
     public static void main(String[] args) {
-        /*
-         =========================
-         XPath Notes
-         =========================
-         1. **What is XPath?**
-            - XPath (XML Path Language) is used to navigate and locate elements in XML or HTML documents.
-            - It provides a way to select nodes or elements based on their attributes, text, or structure.
-         2. **Types of XPath:**
-            a. **Absolute XPath**:
-               - Starts from the root of the document (`/`).
-               - Example: `/html/body/div[1]/form/input`
-               - **Disadvantage:** Fragile, as any structural change can break the path.
-            b. **Relative XPath**:
-               - Starts from anywhere in the document using `//`.
-               - Example: `//input[@id='username']`
-               - **Advantage:** More robust and flexible than absolute XPath.
-         3. **Basic Syntax:**
-            - `//tagname[@attribute='value']`
-              * Selects a tag with a specific attribute and value.
-              * Example: `//button[@type='submit']` selects a `<button>` with `type="submit"`.
-            - `//tagname[text()='exact text']`
-              * Selects a tag based on its exact visible text.
-              * Example: `//h5[text()='Login Successful']`
-         4. **Functions in XPath:**
-            a. `contains()`:
-               - Matches elements based on partial attribute or text values.
-               - Syntax: `//tagname[contains(@attribute, 'partial_value')]`
-               - Example: `//div[contains(@class, 'error')]` matches any `<div>` with a `class` containing "error".
-            b. `starts-with()`:
-               - Matches elements where an attribute starts with a specific value.
-               - Syntax: `//tagname[starts-with(@attribute, 'start_value')]`
-               - Example: `//input[starts-with(@name, 'user')]` matches `<input>` with `name` starting with "user".
-            c. `ends-with()` (not natively supported in XPath 1.0):
-               - For XPath 1.0, combine `contains()` and `substring()` for similar functionality.
-               - Example: `//tagname[contains(@attribute, 'suffix')]` for approximate ends-with behavior.
-         5. **Combining Conditions:**
-            - Use `and` or `or` to combine multiple conditions.
-            - Syntax: `//tagname[@attribute1='value1' and @attribute2='value2']`
-            - Example: `//input[@type='text' and @name='username']` matches an `<input>` with both conditions.
-         6. **Axes in XPath:**
-            - Axes define the relationship between nodes in the XML/HTML tree.
-            a. `parent::`
-               - Selects the parent of the current node.
-               - Example: `//input[@id='username']/parent::div` selects the parent `<div>` of an `<input>` element.
-            b. `child::`
-               - Selects direct child nodes.
-               - Example: `//div/child::p` selects all `<p>` elements directly inside `<div>`.
-            c. `ancestor::`
-               - Selects all ancestors (parents, grandparents, etc.) of a node.
-               - Example: `//span/ancestor::div` selects all `<div>` elements containing the `<span>`.
-            d. `descendant::`
-               - Selects all descendants (children, grandchildren, etc.) of a node.
-               - Example: `//div/descendant::a` selects all `<a>` tags inside a `<div>`.
-            e. `following-sibling::` and `preceding-sibling::`
-               - Select siblings of a node in the DOM.
-               - Example: `//h2/following-sibling::p` selects all `<p>` tags immediately after `<h2>`.
-         7. **Positioning with XPath:**
-            - Use `[position()]` or indexes to select elements based on their position in a list.
-            - Syntax: `//tagname[index]`
-            - Example: `//ul/li[1]` selects the first `<li>` inside a `<ul>`.
-            - Last element: `//ul/li[last()]` selects the last `<li>` in a `<ul>`.
-         8. **Wildcard Matching:**
-            - `*` matches any tag.
-              * Example: `//*[@id='username']` matches any element with `id='username'`.
-            - `@*` matches any attribute.
-              * Example: `//input[@*='value']` matches any `<input>` with an attribute having `value`.
-         9. **Common Use Cases:**
-            a. Locate elements by ID:
-               `//input[@id='username']`
-            b. Locate elements by class name:
-               `//div[@class='error-message']`
-            c. Locate elements by text:
-               `//h1[text()='Welcome']`
-            d. Locate elements with partial matching:
-               `//a[contains(text(), 'Click here')]`
-         10. **Best Practices:**
-            - Use Relative XPath wherever possible for better robustness.
-            - Avoid over-relying on text-based XPath as visible text can change frequently.
-            - Test your XPath in browser dev tools to ensure correctness before using it in automation.
-        */
+// -----------------------------------------
+// 📌 XPath Notes
+// -----------------------------------------
+
+// 🌟 What is XPath?
+// XPath (XML Path Language) is used to navigate and locate nodes in an XML or HTML document.
+// It is commonly used in web automation (e.g., Selenium) to locate elements on a webpage.
+
+// -----------------------------------------
+// ✨ Basic Syntax
+// -----------------------------------------
+// - XPath uses a path-like syntax to identify elements.
+// Example:
+//    /html/body/div   -> Selects the <div> element within <body> in the <html> structure.
+//    //div            -> Selects all <div> elements, regardless of location.
+
+// -----------------------------------------
+// 🎯 Types of XPath
+// -----------------------------------------
+// 1️⃣ **Absolute XPath**:
+//    Starts from the root node (/) and specifies the entire path.
+//    Example: /html/body/div[1]/h1
+//    Pros: Precise location.
+//    Cons: Brittle; breaks if the structure changes.
+
+// 2️⃣ **Relative XPath**:
+//    Starts with a double forward slash (//), allowing you to search from anywhere in the document.
+//    Example: //div[@class='container']
+//    Pros: More flexible and robust than absolute XPath.
+
+// -----------------------------------------
+// 🛠️ Commonly Used XPath Functions
+// -----------------------------------------
+// 1️⃣ **[@attribute='value']**:
+//    Selects elements with a specific attribute value.
+//    Example: //input[@id='username']
+
+// 2️⃣ **text()**:
+//    Selects elements based on their visible text content.
+//    Example: //button[text()='Login']
+
+// 3️⃣ **contains()**:
+//    Selects elements containing a partial match of text or attributes.
+//    Example: //div[contains(@class, 'header')]
+//             //p[contains(text(), 'welcome')]
+
+// 4️⃣ **starts-with()**:
+//    Matches elements whose attribute values start with a specific string.
+//    Example: //input[starts-with(@id, 'user_')]
+
+// 5️⃣ **last()**:
+//    Selects the last element in a set.
+//    Example: //li[last()]
+
+// 6️⃣ **position()**:
+//    Selects elements by position in a set.
+//    Example: (//input)[2] -> Selects the second input element.
+
+// -----------------------------------------
+// 🌍 Using XPath Axes
+// -----------------------------------------
+// Axes are used to find elements in relation to other elements.
+// Examples:
+// - **parent::** Selects the parent node.
+//   Example: //span/parent::div
+// - **child::** Selects the child nodes.
+//   Example: //div/child::p
+// - **ancestor::** Selects all ancestor nodes.
+//   Example: //div/ancestor::html
+// - **following-sibling::** Selects all siblings after the current node.
+//   Example: //h1/following-sibling::p
+// - **preceding-sibling::** Selects all siblings before the current node.
+//   Example: //p/preceding-sibling::h1
+
+// -----------------------------------------
+// 🔍 Using XPath in Selenium
+// -----------------------------------------
+// XPath is a popular locator strategy in Selenium for finding web elements.
+// Example in Java Selenium:
+// WebElement element = driver.findElement(By.xpath("//button[@id='submit']"));
+
+// -----------------------------------------
+// ⚡ Tips for Writing Efficient XPath
+// -----------------------------------------
+// - Prefer **Relative XPath** for better stability.
+// - Use functions like **contains()** and **text()** for dynamic elements.
+// - Avoid long **Absolute XPath** as they are prone to breaking with changes in structure.
+// - Use browser developer tools (e.g., Chrome DevTools) to verify your XPath.
+
+// -----------------------------------------
+// ✅ Practical Example
+// -----------------------------------------
+// Example HTML:
+// <div class="login-form">
+//    <input id="username" type="text" />
+//    <input id="password" type="password" />
+//    <button id="login">Login</button>
+// </div>
+//
+// XPath Selectors:
+// 1️⃣ //div[@class='login-form']              -> Select the entire login form.
+// 2️⃣ //input[@id='username']                 -> Select the username input field.
+// 3️⃣ //button[contains(@id, 'login')]        -> Select the login button.
+// 4️⃣ //input[starts-with(@id, 'user')]       -> Select the username field based on the starting ID.
+
+// -----------------------------------------
+
 
     }
 }
