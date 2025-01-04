@@ -4,11 +4,17 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
 public class Examples {
     public static void main(String[] args) {
 
+        // Set up ChromeOptions to enable headless mode
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless");  // Runs Chrome in headless mode
+
         /* Set up WebDriver */
-        WebDriver driver = new ChromeDriver();
+        WebDriver driver = new ChromeDriver(options);
 
         // Open a test website
         driver.get("https://www.wikipedia.org/");
