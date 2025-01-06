@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class Print_Table {
+public class Print_AllData {
     public static void main(String[] args) {
         // Step 1: Initialize the WebDriver (ChromeDriver in this case)
         WebDriver driver = new ChromeDriver();
