@@ -6,6 +6,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Print_AllData {
     public static void main(String[] args) {
+        // Print all data for even rows and table
+
         // Step 1: Initialize the WebDriver (ChromeDriver in this case)
         WebDriver driver = new ChromeDriver();
 
