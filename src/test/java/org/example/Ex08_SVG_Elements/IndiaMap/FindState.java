@@ -22,7 +22,7 @@ public class FindState {
 
         // Step 4: Handle popups
         // Click on the "I agree" button to accept cookies or any consent popup on the page
-        driver.findElement(By.xpath("//input[@value='I agree']")).click();
+        driver.findElement(By.xpath("//button[text() = 'I understand and agree']")).click();
 
         // Step 5: Search for the Tripura state and click on it
         // Locate the state of Tripura using XPath with normalized spaces and click on it
@@ -32,5 +32,7 @@ public class FindState {
         // Step 6: Close the browser
         // Close the browser once the task is completed
         driver.close();
+
+        System.out.println("Test case passed");
     }
 }
