@@ -30,7 +30,16 @@ public class SearchingProducts {
         // Step 6: Click on the first SVG element found, which is assumed to be the search icon
         svgElements.get(0).click();
 
-        // Step 7: Close the browser after the operation is complete
+        // Step 7: To print the list of all searched items
+        List<WebElement> titleResults = driver.findElements(By.xpath("//div[contains(@class,'slAVV4')]/a[2]"));
+
+        for (WebElement title : titleResults){
+            System.out.println(title.getText());
+            System.out.println();
+        }
+
+        // Step 8: Close the browser after the operation is complete
         driver.close();
+
     }
 }
