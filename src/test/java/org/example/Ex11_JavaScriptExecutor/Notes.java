@@ -30,7 +30,7 @@ public class Notes {
          */
 
         // 1️⃣ Initializing JavaScriptExecutor
-        WebDriver driver = new ChromeDriver;
+        WebDriver driver = new ChromeDriver();
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
         /*

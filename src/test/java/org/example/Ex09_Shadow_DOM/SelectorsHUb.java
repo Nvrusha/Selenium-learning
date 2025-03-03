@@ -18,8 +18,10 @@ public class SelectorsHUb {
         // Step 3: Navigate to the SelectorsHub page
         driver.get("https://selectorshub.com/xpath-practice-page/");
 
-        // Step 4:
+        // Step 4: Typecasting WebDriver to JavascriptExecutor
         JavascriptExecutor JS = (JavascriptExecutor)driver;
+
+        JS.executeScript("alert(1)");
 
     }
 }
