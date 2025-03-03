@@ -1,5 +1,6 @@
 package org.example.Ex09_Shadow_DOM;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -18,6 +19,7 @@ public class SelectorsHUb {
         driver.get("https://selectorshub.com/xpath-practice-page/");
 
         // Step 4:
+        JavascriptExecutor JS = (JavascriptExecutor)driver;
 
     }
 }
