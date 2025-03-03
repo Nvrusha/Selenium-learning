@@ -17,8 +17,8 @@ public class PrintAll_States {
         // Step 2: Navigate to the India map page on the amcharts website
         driver.get("https://www.amcharts.com/svg-maps/?map=india");
 
-        // Step 3: Handle the "I agree" popup (if present)
-        driver.findElement(By.xpath("//input[@value='I agree']")).click();
+        // Step 3: Handle the "I understand and agree" popup (if present)
+        driver.findElement(By.xpath("//button[text() = 'I understand and agree']")).click();
 
         // Step 4: Locate all state elements inside the SVG map using XPath
         List<WebElement> states = driver.findElements(By.xpath(
