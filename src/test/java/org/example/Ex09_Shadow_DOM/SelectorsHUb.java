@@ -33,11 +33,11 @@ public class SelectorsHUb {
         // Step 6: Access the shadow DOM and find the input field inside it
 
         WebElement userName = (WebElement) js.executeScript(
-                "return document.querySelector('div#userName').shadowRoot.querySelector('input#kils')"
+                "return document.querySelector('#userName').shadowRoot.querySelector('#kils')"
         ); // UserName input field
 
         WebElement pizzaName = (WebElement) js.executeScript(
-                "return document.querySelector(\"div#userName\").shadowRoot.querySelector(\"div#app2\").shadowRoot.querySelector(\"input#pizza\")"
+                "return document.querySelector(\"#userName\").shadowRoot.querySelector(\"#app2\").shadowRoot.querySelector(\"#pizza\")"
         ); // pizzaName input field
 
 
