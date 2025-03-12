@@ -28,22 +28,30 @@ public class SelectorsHUb {
         js.executeScript("arguments[0].scrollIntoView(true);", toScroll);
 
         // Adding delay after scrolling
-        Thread.sleep(12000);
+        Thread.sleep(15000);
 
         // Step 6: Access the shadow DOM and find the input field inside it
+
         WebElement userName = (WebElement) js.executeScript(
                 "return document.querySelector('div#userName').shadowRoot.querySelector('input#kils')"
-        );
+        ); // UserName input field
+
+        WebElement pizzaName = (WebElement) js.executeScript(
+                "return document.querySelector(\"div#userName\").shadowRoot.querySelector(\"div#app2\").shadowRoot.querySelector(\"input#pizza\")"
+        ); // pizzaName input field
+
 
         // Step 7: Send input value to the located shadow DOM element
         userName.sendKeys("Vrusha1234");
+        pizzaName.sendKeys("Margherita pizza");
+
 
         // Adding delay before quiting
         Thread.sleep(2000);
 
         // Step 8: Close the browser session properly
+        System.out.println("Test passed!");
         driver.quit();
-
 
     }
 
