@@ -1,4 +1,4 @@
-package org.example.Ex11_JavaScriptExecutor;
+package org.example.Ex11_JavaScriptExecutor.UsesOf_JSExcutor;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-public class Practice {
+public class Scrolling {
     public static void main(String[] args) throws InterruptedException {
 
         // Step 1: Set up ChromeOptions to customize browser behavior.
