@@ -44,16 +44,23 @@ public class PrintAll_Data {
         List<WebElement> columnData =
                 driver.findElements(By.xpath("//div[@class='oxd-table-card']/div/div[6]"));
 
-        // Step 8: Iterate over each element in the 6th column
+        // Step 8: Iterate over each element in the 6th column of the table
         for (WebElement data : columnData) {
-            // Check if the text of the element equals "Terminated"
+            // Check if the text of the current element (cell) equals "Terminated"
             if (data.getText().equals("Terminated")) {
-                // Step 9: Locate the trash icon button and click it to delete the entry
-                driver.findElement(By.xpath("//button/i[@class='oxd-icon bi-trash']")).click();
+                // Locate the trash icon button that is the 3rd sibling (relative to 'data')
+                // and click it to delete the corresponding entry
+                data.findElement(By.xpath("./following-sibling::div[3]//button[1]")).click();
             }
         }
 
+        // Step 9: Close the 'Delete' modal
+        Thread.sleep(2000);
+        WebElement closeButton = driver.findElement(By.xpath("//div[@class='orangehrm-modal-footer']//button[1]"));
+        closeButton.click();
+
         // Step 10: Close the browser session
+        Thread.sleep(4000);
         driver.close();
     }
 }
