@@ -48,18 +48,20 @@ public class PrintAll_Data {
         for (WebElement data : columnData) {
             // Check if the text of the current element (cell) equals "Terminated"
             if (data.getText().equals("Terminated")) {
-                // Locate the trash icon button that is the 3rd sibling (relative to 'data')
-                // and click it to delete the corresponding entry
+                // Locate the delete button (trash icon) which is the 3rd sibling element relative to the current 'data' cell
+                // Using XPath to navigate to the corresponding button for deletion
                 data.findElement(By.xpath("./following-sibling::div[3]//button[1]")).click();
+
+                // Pause to allow the delete confirmation modal to appear (Temporary solution; use explicit wait for optimization)
+                Thread.sleep(2000);
+
+                // Locate the close button ("X" icon) on the modal dialog and click it to close the modal
+                WebElement closeButton = driver.findElement(By.xpath("//button[contains(@class, 'oxd-dialog-close-button')]"));
+                closeButton.click();
             }
         }
 
-        // Step 9: Close the 'Delete' modal
-        Thread.sleep(2000);
-        WebElement closeButton = driver.findElement(By.xpath("//div[@class='orangehrm-modal-footer']//button[1]"));
-        closeButton.click();
-
-        // Step 10: Close the browser session
+        // Step 9: Close the browser session
         Thread.sleep(4000);
         driver.close();
     }
