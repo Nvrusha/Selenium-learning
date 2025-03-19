@@ -1,4 +1,4 @@
-package org.example.Ex07_WebTables.WebTable3;
+package org.example.Ex07_WebTables.WebTable3_OrangeHRM;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
