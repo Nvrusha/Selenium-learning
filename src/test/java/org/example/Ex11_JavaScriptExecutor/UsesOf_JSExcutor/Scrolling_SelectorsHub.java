@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-public class Scrolling {
+public class Scrolling_SelectorsHub {
     public static void main(String[] args) throws InterruptedException {
 
         // Step 1: Set up ChromeOptions to customize browser behavior.
@@ -26,17 +26,21 @@ public class Scrolling {
         // 1️⃣ Scroll the Page
 
         // (a) Scroll Down by a Specific Pixel Value
-        JS.executeScript("window.scrollBy(0,2000)"); // Scroll down by 500 pixels
+        JS.executeScript("window.scrollBy(0,500)"); // Scroll down by 500 pixels
+
+        Thread.sleep(2000);
 
         // (b) Scroll to the Bottom of the Page
         JS.executeScript("window.scrollBy(0, document.body.scrollHeight)");
 
         Thread.sleep(1000);
+
         // (c) Scroll to a Specific Element
         WebElement specific_Element = driver.findElement(By.xpath("//button[text()='Click To Open Window Prompt Alert']"));
         JS.executeScript("arguments[0].scrollIntoView(true)", specific_Element);
 
-        Thread.sleep(1000);
+        Thread.sleep(2000);
+
         driver.quit();
 
     }
