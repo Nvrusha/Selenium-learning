@@ -8,7 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.List;
 
-public class PrintAll_Data {
+public class Terminated_Status {
     public static void main(String[] args) throws InterruptedException {
 
         // Step 1: Initialize WebDriver and maximize the browser window

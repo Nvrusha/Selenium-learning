@@ -1,4 +1,4 @@
-package org.example.Ex07_WebTables.WebTable2;
+package org.example.Ex07_WebTables.WebTable2_AwesomeQA;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
