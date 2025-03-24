@@ -1,4 +1,4 @@
-package org.example.Ex11_JavaScriptExecutor.UsesOf_JSExcutor;
+package org.example.Ex11_JavaScriptExecutor.UsesOf_JSExecutor;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
