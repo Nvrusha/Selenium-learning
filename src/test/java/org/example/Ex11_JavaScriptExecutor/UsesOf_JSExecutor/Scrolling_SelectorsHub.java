@@ -11,9 +11,9 @@ public class Scrolling_SelectorsHub {
     public static void main(String[] args) throws InterruptedException {
 
         // ================================================
-        // Test Case: Verify Scrolling Functionality on SelectorsHub Practice Page
+        // Test Case: Verify Scrolling Functionality on SelectorsHub Practice Page Using JavaScriptExecutor
         // ================================================
-        // Scenario:
+        // Test steps:
         // 1. Open SelectorsHub XPath Practice Page in a Chrome browser.
         // 2. Maximize the browser window.
         // 3. Scroll down by 500 pixels using JavaScriptExecutor.
