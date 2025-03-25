@@ -54,12 +54,16 @@ public class Scroll_SelectorsHub {
 
         // (b) Scroll to the Bottom of the Page
         JS.executeScript("window.scrollBy(0, document.body.scrollHeight)"); // Scroll to the bottom
-        Thread.sleep(1000); // Short wait time to ensure smooth scrolling
+        Thread.sleep(2000); // Short wait time to ensure smooth scrolling
 
         // (c) Scroll to a Specific Element (Button: "Click To Open Window Prompt Alert")
         WebElement specific_Element = driver.findElement(By.xpath("//button[text()='Click To Open Window Prompt Alert']"));
         JS.executeScript("arguments[0].scrollIntoView(true)", specific_Element); // Scroll until the element is visible
         Thread.sleep(2000); // Pause to verify if the element is in view
+
+        // (d) Scroll to the top of the Page
+        JS.executeScript("window.scrollBy(0, -document.body.scrollHeight)"); // Scroll to the top again
+        Thread.sleep(2000); // Short wait time to ensure smooth scrolling
 
         // Step 5: Close the browser
         driver.quit();
