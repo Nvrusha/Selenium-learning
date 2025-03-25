@@ -46,7 +46,11 @@ public class Scrolling_SelectorsHub {
 
         // (a) Scroll Down by a Specific Pixel Value (500 pixels)
         JS.executeScript("window.scrollBy(0,500)"); // Scroll down by 500 pixels
-        Thread.sleep(2000); // Wait for 2 seconds to observe the scrolling effect
+        Thread.sleep(4000); // Wait for 4 seconds to observe the scrolling effect
+
+        // Retrieve and print the current vertical scroll position of the page
+        System.out.println(JS.executeScript("return window.pageYOffset"));
+
 
         // (b) Scroll to the Bottom of the Page
         JS.executeScript("window.scrollBy(0, document.body.scrollHeight)"); // Scroll to the bottom
