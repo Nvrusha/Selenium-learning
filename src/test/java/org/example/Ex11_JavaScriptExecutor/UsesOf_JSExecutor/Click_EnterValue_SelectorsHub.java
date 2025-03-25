@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-public class Clicking_EnteringValue_SelectorsHub {
+public class Click_EnterValue_SelectorsHub {
     public static void main(String[] args) throws InterruptedException {
 
         // ================================================
