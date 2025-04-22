@@ -6,12 +6,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class FileUpload {
+public class Single_FileUpload {
     public static void main(String[] args) throws InterruptedException {
 
         // -------------------------------------------------------------------------------------
         // 📌 Test Case: Verify File Upload Functionality on SelectorsHub
-        // 📌 Scenario: Upload a file on the SelectorsHub website after scrolling to bring the
+        // 📌 Scenario: Upload a single file on the SelectorsHub website after scrolling to bring the
         // upload element into view.
         //
         // ✅ Test Steps:
