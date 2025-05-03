@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-
 import java.time.Duration;
 
 public class ImplicitWait_Herokuapp {
@@ -33,7 +32,7 @@ public class ImplicitWait_Herokuapp {
         driver.manage().window().maximize();
 
         // Step 2️⃣: Set implicit wait (applies globally for all element lookups)
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(40));
 
         // Step 3️⃣: Navigate to the Heroku dynamic loading page
         driver.get("https://the-internet.herokuapp.com/dynamic_loading/1");

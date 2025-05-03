@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class ExplicitWait {
+public class ExplicitWait_Herokuapp {
     public static void main(String[] args) {
         // -------------------------------------------------------------------------------------
         // ✅ Test Case: Validate Visibility of Dynamic Text Using Explicit Wait on HerokuApp
