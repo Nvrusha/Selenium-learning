@@ -40,7 +40,10 @@ public class ExplicitWait_Herokuapp {
         startBtn.click();
 
         // Step 4️⃣: Use explicit wait to wait until the "Hello World!" text is visible
+        // Explicit wait declaration
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        // Usage of explicit wait
         WebElement resultText = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='finish']/h4"))
         );
