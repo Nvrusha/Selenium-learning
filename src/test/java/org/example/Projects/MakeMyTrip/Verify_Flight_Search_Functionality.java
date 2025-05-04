@@ -62,13 +62,17 @@ public class Verify_Flight_Search_Functionality {
         driver.findElement(By.xpath("//li[@id='react-autowhatever-1-section-0-item-0']")).click();
 
         //Select the departure date.
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//span[@class='DayPicker-NavButton DayPicker-NavButton--next']")).click();
+        // Step 3️⃣: Select a specific date (Example: 6 June 2025)
+
         
 
 
 
 
         Thread.sleep(4000);
-        driver.close();
+        //driver.close();
 
 
 
