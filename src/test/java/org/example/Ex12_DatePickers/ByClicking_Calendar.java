@@ -8,82 +8,92 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.List;
 
 public class ByClicking_Calendar {
-    public static void main(String[] args) {
 
-        // -------------------------------------------------------------------------------------
-        // ✅ Test Case: Select a Date Using Calendar Widget
-        //
-        // 📋 Scenario:
-        // User opens the date picker, navigates to the correct month if needed,
-        // and selects a specific date by clicking on the calendar widget.
-        //
-        // ✅ Test Steps:
-        // 1️⃣ Launch the browser and navigate to the target website with a date picker.
-        // 2️⃣ Click on the date input or calendar icon to open the calendar.
-        // 3️⃣ Navigate to the desired month using next/previous arrows (if required).
-        // 4️⃣ Click on the specific day (e.g., "20") in the calendar.
-        // 5️⃣ Validate that the correct date is selected/displayed in the input field.
-        // 6️⃣ Close the browser.
-        //
-        // 🧪 Expected Result:
-        // The calendar widget should update the date input field with the selected date (e.g., "20/09/2025").
-        // -------------------------------------------------------------------------------------
-
-        // Step 1️⃣: Launch Chrome browser and maximize the window
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
-
-        // Step 2️⃣: Navigate to the jQuery UI DatePicker demo page
-        driver.get("https://jqueryui.com/datepicker/");
-
-        // Step 3️⃣: Switch to the iframe that contains the date picker widget
-        driver.switchTo().frame(0);
-
-        // Step 4️⃣: Locate and click the input field to open the calendar widget
-        WebElement dateField = driver.findElement(By.xpath("//input[@id='datepicker']"));
-        dateField.click();
-
-        // Step 5️⃣: Define the desired date to be selected
-        String year = "2025";
-        String month = "September";
-        String expectedDate = "20";
-
-        // Step 6️⃣: Loop until the correct month and year is displayed
+    // 🔧 Method to navigate to the desired month and year in the calendar
+    static void selectMonthAndYear(WebDriver driver, String month, String year) {
         while (true) {
-            // Get currently displayed month and year
+            // Get the currently displayed month and year
             String currentMonth = driver.findElement(By.xpath("//span[@class='ui-datepicker-month']")).getText();
             String currentYear = driver.findElement(By.xpath("//span[@class='ui-datepicker-year']")).getText();
 
-            // Break loop if desired month and year is reached
+            // Stop if the desired month and year are displayed
             if (currentMonth.equals(month) && currentYear.equals(year)) {
                 break;
             }
 
-            // Convert years to integers to compare properly
+            // Convert year to integers for comparison
             int targetYear = Integer.parseInt(year);
             int actualYear = Integer.parseInt(currentYear);
 
-            // Navigate forward or backward based on comparison
+            // Navigate to future or past month
             if (targetYear > actualYear || (targetYear == actualYear && !currentMonth.equals(month))) {
-                driver.findElement(By.xpath("//span[@class='ui-icon ui-icon-circle-triangle-e']")).click(); // Next month
+                driver.findElement(By.xpath("//span[@class='ui-icon ui-icon-circle-triangle-e']")).click(); // ➡️ Next
             } else {
-                driver.findElement(By.xpath("//span[@class='ui-icon ui-icon-circle-triangle-w']")).click(); // Previous month
+                driver.findElement(By.xpath("//span[@class='ui-icon ui-icon-circle-triangle-w']")).click(); // ⬅️ Previous
             }
         }
+    }
 
-        // Step 7️⃣: Select the desired date from the calendar using enhanced for-loop
+    // 🔧 Method to select a specific date from the calendar
+    static void selectDate(WebDriver driver, String expectedDate) {
         List<WebElement> allDates = driver.findElements(By.xpath("//table[@class='ui-datepicker-calendar']//tbody//tr/td/a"));
         for (WebElement date : allDates) {
             if (date.getText().equals(expectedDate)) {
-                date.click(); // Click the matching date
+                date.click(); // ✅ Click the matching date
                 break;
             }
         }
+    }
 
-        // ✅ Optional Step: Print confirmation message
+    public static void main(String[] args) {
+
+        // -------------------------------------------------------------------------------------
+        // ✅ Test Case: Select a Date Using Calendar Widget (Modular Approach)
+        //
+        // 📋 Scenario:
+        // Open the date picker, navigate to the desired month/year, and click on a specific date.
+        //
+        // ✅ Steps:
+        // 1️⃣ Launch browser and open the site.
+        // 2️⃣ Open the date picker widget.
+        // 3️⃣ Use method to select the correct month and year.
+        // 4️⃣ Use method to click the expected date.
+        // 5️⃣ Print success message.
+        // 6️⃣ Close the browser.
+        //
+        // 🧪 Expected Result:
+        // The date input should display the selected date (e.g., "20/09/2025").
+        // -------------------------------------------------------------------------------------
+
+        // Step 1️⃣: Setup browser
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+
+        // Step 2️⃣: Open jQuery UI DatePicker demo
+        driver.get("https://jqueryui.com/datepicker/");
+
+        // Step 3️⃣: Switch to iframe containing the date picker
+        driver.switchTo().frame(0);
+
+        // Step 4️⃣: Click date input field to open calendar
+        WebElement dateField = driver.findElement(By.xpath("//input[@id='datepicker']"));
+        dateField.click();
+
+        // Step 5️⃣: Define target date
+        String year = "2025";
+        String month = "September";
+        String expectedDate = "20";
+
+        // Step 6️⃣: Navigate to correct month and year
+        selectMonthAndYear(driver, month, year);
+
+        // Step 7️⃣: Select the desired day
+        selectDate(driver, expectedDate);
+
+        // Step 8️⃣: Confirmation
         System.out.println("✅ Test Passed: Date '" + expectedDate + "/" + month + "/" + year + "' successfully selected.");
 
-        // Step 8️⃣: Close the browser
+        // Step 9️⃣: Cleanup
         driver.close();
     }
 }
