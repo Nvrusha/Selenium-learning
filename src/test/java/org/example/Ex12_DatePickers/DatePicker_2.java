@@ -89,7 +89,7 @@ public class DatePicker_2 {
         System.out.println("✅ Test Passed: Date '" + day + "/" + month + "/" + year + "' successfully selected.");
 
         // Temporary pause to visually observe the change (not recommended in real tests)
-        Thread.sleep(3000);
+        Thread.sleep(2000);
 
         // Step 8️⃣: Close the browser
         driver.close();
