@@ -44,7 +44,7 @@ public class DatePicker_2 {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         // -------------------------------------------------------------------------------------
         // ✅ Test Case: Select a Date Using jQuery Calendar Widget
@@ -87,6 +87,9 @@ public class DatePicker_2 {
 
         // Step 7️⃣: Confirmation message
         System.out.println("✅ Test Passed: Date '" + day + "/" + month + "/" + year + "' successfully selected.");
+
+        // Temporary pause to visually observe the change (not recommended in real tests)
+        Thread.sleep(3000);
 
         // Step 8️⃣: Close the browser
         driver.close();
