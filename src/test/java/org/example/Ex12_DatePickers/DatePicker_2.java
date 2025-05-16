@@ -7,7 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.List;
 
-public class ByClicking_Calendar {
+public class DatePicker_2 {
 
     // 🔧 Method to navigate to the correct month/year and select a specific date
     static void selectDateFromCalendar(WebDriver driver, String month, String year, String day) {
