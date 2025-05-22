@@ -12,6 +12,54 @@ import java.time.Duration;
 import java.util.List;
 
 public class Verify_Flight_Search_Functionality {
+
+    public static void lowestPricesSelection (List<WebElement> dateCells){
+        // Initialize minPrice to maximum value to find the lowest price easily
+        int minPrice = Integer.MAX_VALUE;
+
+        // This will hold the date cell WebElement with the lowest price
+        WebElement minPriceDateElement = null;
+
+        // Loop through each date cell to find the price and compare
+        for (WebElement cell : dateCells) {
+            try {
+                // Locate the price element inside the cell (2nd <p> tag within this cell)
+                // Using .// to search relative to current 'cell'
+                WebElement priceElement = cell.findElement(By.xpath(".//p[2]"));
+
+                // Extract price text, removing all non-digit characters like currency symbols and commas
+                String priceText = priceElement.getText().replaceAll("[^0-9]", "");
+
+                // Proceed only if price text is not empty
+                if (!priceText.isEmpty()) {
+                    // Parse the cleaned string to an integer price value
+                    int price = Integer.parseInt(priceText);
+
+                    // Update minPrice and element if current price is lower than the stored minimum
+                    if (price < minPrice) {
+                        minPrice = price;
+                        minPriceDateElement = cell;
+                    }
+                }
+            } catch (Exception e) {
+                // If no price element is found in this cell, skip it silently
+                continue;
+            }
+        }
+
+        // After looping, check if a lowest price date was found
+        if (minPriceDateElement != null) {
+            // Click the date cell with the lowest price
+            minPriceDateElement.click();
+
+            // Log the selected price to the console
+            System.out.println("✅ Selected lowest-priced date: ₹" + minPrice);
+        } else {
+            // Inform if no date with a price was found on the calendar
+            System.out.println("❌ No date with price found.");
+        }
+    }
+
     public static void main(String[] args) throws InterruptedException {
 
         // -----------------------------------------------------------------------------------------
@@ -80,54 +128,32 @@ public class Verify_Flight_Search_Functionality {
             ((JavascriptExecutor) driver).executeScript("arguments[0].click();", departureField);
         }
 
-
         // Find all date cells in the second month calendar container
         List<WebElement> dateCells = driver.findElements(By.xpath("//div[@class='DayPicker-Month'][2]//div[@class='dateInnerCell']"));
+        lowestPricesSelection(dateCells);
 
-        // Initialize minPrice to maximum value to find the lowest price easily
-        int minPrice = Integer.MAX_VALUE;
-
-        // This will hold the date cell WebElement with the lowest price
-        WebElement minPriceDateElement = null;
-
-        // Loop through each date cell to find the price and compare
-        for (WebElement cell : dateCells) {
-            try {
-                // Locate the price element inside the cell (2nd <p> tag within this cell)
-                // Using .// to search relative to current 'cell'
-                WebElement priceElement = cell.findElement(By.xpath(".//p[2]"));
-
-                // Extract price text, removing all non-digit characters like currency symbols and commas
-                String priceText = priceElement.getText().replaceAll("[^0-9]", "");
-
-                // Proceed only if price text is not empty
-                if (!priceText.isEmpty()) {
-                    // Parse the cleaned string to an integer price value
-                    int price = Integer.parseInt(priceText);
-
-                    // Update minPrice and element if current price is lower than the stored minimum
-                    if (price < minPrice) {
-                        minPrice = price;
-                        minPriceDateElement = cell;
-                    }
-                }
-            } catch (Exception e) {
-                // If no price element is found in this cell, skip it silently
-                continue;
-            }
+        // Step 7️⃣: Select return date by navigating to July
+        WebElement returnField = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//label[@for='return']")));
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(returnField)).click();
+        } catch (Exception e){
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", returnField);
         }
 
-        // After looping, check if a lowest price date was found
-        if (minPriceDateElement != null) {
-            // Click the date cell with the lowest price
-            minPriceDateElement.click();
+        String currentMonth = driver.findElement(By.xpath("//div[@class='DayPicker-Caption']")).getText();
 
-            // Log the selected price to the console
-            System.out.println("✅ Selected lowest-priced date: ₹" + minPrice);
-        } else {
-            // Inform if no date with a price was found on the calendar
-            System.out.println("❌ No date with price found.");
-        }
+        // Click the "Next" arrow to move to next month
+        WebElement nextArrow = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@class='DayPicker-NavButton DayPicker-NavButton--next']")));
+        nextArrow.click();
+
+        wait.until(ExpectedConditions.not
+                (ExpectedConditions.textToBePresentInElementLocated
+                        (By.xpath("//div[@class='DayPicker-Caption']"), currentMonth)
+        ));
+
+        // Now select lowest price from July (2nd month again)
+        List<WebElement> returnDateCells = driver.findElements(By.xpath("//div[@class='DayPicker-Month'][2]//div[@class='dateInnerCell']"));
+        lowestPricesSelection(returnDateCells);
 
         // Step 9️⃣: Close the browser
         driver.quit();
