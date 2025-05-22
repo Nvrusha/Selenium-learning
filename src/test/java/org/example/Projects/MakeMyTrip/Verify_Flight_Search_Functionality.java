@@ -13,73 +13,41 @@ import java.util.List;
 
 public class Verify_Flight_Search_Functionality {
 
-    public static void lowestPricesSelection (List<WebElement> dateCells){
-        // Initialize minPrice to maximum value to find the lowest price easily
+    /**
+     * Reusable method to select the date with the lowest available price from given calendar date cells.
+     * @param dateCells List of WebElement representing date cells with price tags
+     */
+    public static void lowestPricesSelection(List<WebElement> dateCells) {
         int minPrice = Integer.MAX_VALUE;
-
-        // This will hold the date cell WebElement with the lowest price
         WebElement minPriceDateElement = null;
 
-        // Loop through each date cell to find the price and compare
         for (WebElement cell : dateCells) {
             try {
-                // Locate the price element inside the cell (2nd <p> tag within this cell)
-                // Using .// to search relative to current 'cell'
                 WebElement priceElement = cell.findElement(By.xpath(".//p[2]"));
-
-                // Extract price text, removing all non-digit characters like currency symbols and commas
                 String priceText = priceElement.getText().replaceAll("[^0-9]", "");
-
-                // Proceed only if price text is not empty
                 if (!priceText.isEmpty()) {
-                    // Parse the cleaned string to an integer price value
                     int price = Integer.parseInt(priceText);
-
-                    // Update minPrice and element if current price is lower than the stored minimum
                     if (price < minPrice) {
                         minPrice = price;
                         minPriceDateElement = cell;
                     }
                 }
             } catch (Exception e) {
-                // If no price element is found in this cell, skip it silently
+                // Skip this cell if no price is found
                 continue;
             }
         }
 
-        // After looping, check if a lowest price date was found
         if (minPriceDateElement != null) {
-            // Click the date cell with the lowest price
             minPriceDateElement.click();
-
-            // Log the selected price to the console
             System.out.println("✅ Selected lowest-priced date: ₹" + minPrice);
         } else {
-            // Inform if no date with a price was found on the calendar
             System.out.println("❌ No date with price found.");
         }
     }
 
     public static void main(String[] args) throws InterruptedException {
-
-        // -----------------------------------------------------------------------------------------
-        // ✅ Test Case: Verify Flight Search Functionality Using MakeMyTrip
-        //
-        // 🔍 Scenario:
-        // Search for flights from New Delhi to Mumbai and validate that search results are displayed.
-        //
-        // ✅ Test Steps:
-        // 1. Launch the browser and open MakeMyTrip.
-        // 2. Handle any initial popups or overlays.
-        // 3. Enter 'From' city as New Delhi and select from suggestions.
-        // 4. Enter 'To' city as Mumbai and select from suggestions.
-        // 5. Select a specific departure date (e.g., 6 June 2025).
-        // 6. Click the Search button.
-        // 7. Verify that flight search results are displayed.
-        // 8. Close the browser.
-        // -----------------------------------------------------------------------------------------
-
-        // Step 1️⃣: Initialize WebDriver
+        // Step 1️⃣: Initialize WebDriver and wait
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -87,7 +55,7 @@ public class Verify_Flight_Search_Functionality {
         // Step 2️⃣: Open MakeMyTrip website
         driver.get("https://www.makemytrip.com/");
 
-        // Step 3️⃣: Handle potential login modal or overlay
+        // Step 3️⃣: Handle optional login popup overlay
         try {
             WebElement popupClose = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".commonModal__close")));
             popupClose.click();
@@ -95,10 +63,10 @@ public class Verify_Flight_Search_Functionality {
             System.out.println("No popup appeared.");
         }
 
-        // Click somewhere blank on the page to release focus from the auto-selected field
+        // Click blank area to remove focus from login or auto-input fields
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//ul[@class='fswTabs latoRegular darkGreyText ']//li[2]"))).click();
 
-        // Step 4️⃣: Click on 'From' field and enter New Delhi
+        // Step 4️⃣: Enter "From" city as New Delhi
         WebElement fromCity = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//label[@for='fromCity']")));
         fromCity.click();
 
@@ -108,7 +76,7 @@ public class Verify_Flight_Search_Functionality {
         WebElement fromSuggestion = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='makeFlex appendTop12  forHideundefined']")));
         fromSuggestion.click();
 
-        // Step 5️⃣: Click on 'To' field and enter Mumbai
+        // Step 5️⃣: Enter "To" city as Mumbai
         WebElement toCity = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//label[@for='toCity']")));
         toCity.click();
 
@@ -118,44 +86,45 @@ public class Verify_Flight_Search_Functionality {
         WebElement toSuggestion = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//ul[@role='listbox']//li[contains(@id,'section-0-item-0')]")));
         toSuggestion.click();
 
-        // Step 6️⃣: Select departure date
+        // Step 6️⃣: Select departure date (lowest-priced)
         WebElement departureField = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//label[@for='departure']")));
         try {
-            // Try regular click
             wait.until(ExpectedConditions.elementToBeClickable(departureField)).click();
         } catch (Exception e) {
-            // If not clickable normally, use JS click as fallback
             ((JavascriptExecutor) driver).executeScript("arguments[0].click();", departureField);
         }
 
-        // Find all date cells in the second month calendar container
+        // Fetch all dates in visible second month and select the cheapest one
         List<WebElement> dateCells = driver.findElements(By.xpath("//div[@class='DayPicker-Month'][2]//div[@class='dateInnerCell']"));
         lowestPricesSelection(dateCells);
 
-        // Step 7️⃣: Select return date by navigating to July
+        // Step 7️⃣: Select return date (from next month with lowest price)
         WebElement returnField = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//label[@for='return']")));
         try {
             wait.until(ExpectedConditions.elementToBeClickable(returnField)).click();
-        } catch (Exception e){
+        } catch (Exception e) {
             ((JavascriptExecutor) driver).executeScript("arguments[0].click();", returnField);
         }
 
+        // Store current visible month before clicking next
         String currentMonth = driver.findElement(By.xpath("//div[@class='DayPicker-Caption']")).getText();
 
-        // Click the "Next" arrow to move to next month
+        // Click the next month arrow
         WebElement nextArrow = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@class='DayPicker-NavButton DayPicker-NavButton--next']")));
         nextArrow.click();
 
-        wait.until(ExpectedConditions.not
-                (ExpectedConditions.textToBePresentInElementLocated
-                        (By.xpath("//div[@class='DayPicker-Caption']"), currentMonth)
+        // Wait for the month to change (ensure calendar updated)
+        wait.until(ExpectedConditions.not(
+                ExpectedConditions.textToBePresentInElementLocated(
+                        By.xpath("//div[@class='DayPicker-Caption']"), currentMonth
+                )
         ));
 
-        // Now select lowest price from July (2nd month again)
+        // Select lowest price date in the newly visible month
         List<WebElement> returnDateCells = driver.findElements(By.xpath("//div[@class='DayPicker-Month'][2]//div[@class='dateInnerCell']"));
         lowestPricesSelection(returnDateCells);
 
-        // Step 9️⃣: Close the browser
+        // Step 9️⃣: Close browser
         driver.quit();
     }
 }
