@@ -130,8 +130,8 @@ public class Verify_Flight_Search_Functionality {
         List<WebElement> returnDateCells = driver.findElements(By.xpath("//div[@class='DayPicker-Month'][2]//div[@class='dateInnerCell']"));
         lowestPricesSelection(driver, returnDateCells); // Call method to pick lowest return price
 
-        // Temporary pause to visually observe the change (not recommended in real tests)
-        Thread.sleep(2000);
+        // ✅ Step 8: Click on the search button
+        WebElement searchBtn = driver.findElement(By.xpath("//a[@class='primaryBtn font24 latoBold widgetSearchBtn ']"));
 
         // ✅ Step 8: Close the browser
         driver.quit();
