@@ -47,7 +47,8 @@ public class Verify_Flight_Search_Functionality {
             String date = minPriceDateElement.findElement(By.xpath(".//p[1]")).getText();
 
             // Extract month and year from parent calendar container (traverse up to DayPicker-Month)
-            WebElement month = minPriceDateElement.findElement(By.xpath("./ancestor::div[contains(@class, 'DayPicker-Month')]//div[@class='DayPicker-Caption']"));
+            WebElement month = minPriceDateElement.findElement(
+                    By.xpath("./ancestor::div[contains(@class, 'DayPicker-Month')]/div[@class='DayPicker-Caption']"));
             String monthYear = month.getText();
 
             // Click the lowest price date
@@ -138,7 +139,8 @@ public class Verify_Flight_Search_Functionality {
         ));
 
         // Get all date cells in the newly opened second month
-        List<WebElement> returnDateCells = driver.findElements(By.xpath("//div[@class='DayPicker-Month'][2]//div[@class='dateInnerCell']"));
+        List<WebElement> returnDateCells = driver.findElements(
+                By.xpath("//div[@class='DayPicker-Month'][2]//div[@class='dateInnerCell']"));
         lowestPricesSelection(driver, returnDateCells, "Return"); // Call method to pick lowest return price
 
         // ✅ Step 8: Click on the search button
