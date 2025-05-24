@@ -15,7 +15,7 @@ import java.util.List;
 public class Verify_Flight_Search_Functionality {
 
     // 🔁 Reusable method to select the date cell with the lowest price
-    public static void lowestPricesSelection(WebDriver driver, List<WebElement> dateCells, String label) {
+    public static void lowestPricesSelection(WebDriver driver, List<WebElement> dateCells, String tripType) {
         int minPrice = Integer.MAX_VALUE; // Start with the maximum possible value
         WebElement minPriceDateElement = null; // Store element with lowest price
 
@@ -53,10 +53,10 @@ public class Verify_Flight_Search_Functionality {
             // Click the lowest price date
             minPriceDateElement.click();
 
-            System.out.println("✅ Selected lowest-priced " + label + " date: " + date + " " + monthYear + " (₹" + minPrice + ")");
+            System.out.println("✅ Selected lowest-priced " + tripType + " date: " + date + " " + monthYear + " (₹" + minPrice + ")");
 
         } else {
-            System.out.println("❌ No "+ label +" date with price found.");
+            System.out.println("❌ No "+ tripType +" date with price found.");
         }
     }
 
