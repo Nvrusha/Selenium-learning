@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -41,8 +42,19 @@ public class Verify_Flight_Search_Functionality {
 
         // Click the cell with the lowest price, if found
         if (minPriceDateElement != null) {
+
+            // Extract the date number (from first <p>)
+            String date = minPriceDateElement.findElement(By.xpath(".//p[1]")).getText();
+
+            // Extract month and year from parent calendar container (traverse up to DayPicker-Month)
+            WebElement month = minPriceDateElement.findElement(By.xpath("./ancestor::div[contains(@class, 'DayPicker-Month')]//div[@class='DayPicker-Caption']"));
+            String monthYear = month.getText();
+
+            // Click the lowest price date
             minPriceDateElement.click();
-            System.out.println("✅ Selected lowest-priced "+ label +" date: ₹" + minPrice);
+
+            System.out.println("✅ Selected lowest-priced " + label + " date: " + date + " " + monthYear + " (₹" + minPrice + ")");
+
         } else {
             System.out.println("❌ No "+ label +" date with price found.");
         }
@@ -90,15 +102,23 @@ public class Verify_Flight_Search_Functionality {
         toSuggestion.click();
 
         // ✅ Step 6: Select lowest-priced departure date
-        WebElement departureField = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//label[@for='departure']")));
-        try {
-            wait.until(ExpectedConditions.elementToBeClickable(departureField)).click();
-        } catch (Exception e) {
-            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", departureField);
-        }
+
+//        WebElement departureField = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//label[@for='departure']")));
+//        try {
+//            wait.until(ExpectedConditions.elementToBeClickable(departureField)).click();
+//        } catch (Exception e) {
+//            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", departureField);
+//        }
+
+//        // Wait for calendar section to be visible
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(
+//                By.xpath("//div[@class='DayPicker-Month'][2]")
+//        ));
 
         // Get all date cells in the second month view
-        List<WebElement> dateCells = driver.findElements(By.xpath("//div[@class='DayPicker-Month'][2]//div[@class='dateInnerCell']"));
+        List<WebElement> dateCells = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(
+                By.xpath("//div[@class='DayPicker-Month'][2]//div[@class='dateInnerCell']")
+        ));
         lowestPricesSelection(driver, dateCells, "Departure"); // Call method to pick lowest price
 
         // ✅ Step 7: Select return date (next month lowest price)
