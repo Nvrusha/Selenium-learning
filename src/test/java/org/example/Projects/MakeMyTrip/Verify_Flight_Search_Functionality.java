@@ -102,12 +102,6 @@ public class Verify_Flight_Search_Functionality {
         lowestPricesSelection(driver, dateCells); // Call method to pick lowest price
 
         // ✅ Step 7: Select return date (next month lowest price)
-        WebElement returnField = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//label[@for='return']")));
-        try {
-            wait.until(ExpectedConditions.elementToBeClickable(returnField)).click();
-        } catch (Exception e) {
-            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", returnField);
-        }
 
         // Save current month to compare after clicking next
         String currentMonth = driver.findElement(By.xpath("//div[@class='DayPicker-Caption']")).getText();
