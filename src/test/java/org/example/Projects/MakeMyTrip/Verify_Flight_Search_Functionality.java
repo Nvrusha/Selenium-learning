@@ -14,7 +14,7 @@ import java.util.List;
 public class Verify_Flight_Search_Functionality {
 
     // 🔁 Reusable method to select the date cell with the lowest price
-    public static void lowestPricesSelection(WebDriver driver, List<WebElement> dateCells) {
+    public static void lowestPricesSelection(WebDriver driver, List<WebElement> dateCells, String label) {
         int minPrice = Integer.MAX_VALUE; // Start with the maximum possible value
         WebElement minPriceDateElement = null; // Store element with lowest price
 
@@ -42,9 +42,9 @@ public class Verify_Flight_Search_Functionality {
         // Click the cell with the lowest price, if found
         if (minPriceDateElement != null) {
             minPriceDateElement.click();
-            System.out.println("✅ Selected lowest-priced date: ₹" + minPrice);
+            System.out.println("✅ Selected lowest-priced "+ label +" date: ₹" + minPrice);
         } else {
-            System.out.println("❌ No date with price found.");
+            System.out.println("❌ No "+ label +" date with price found.");
         }
     }
 
@@ -99,7 +99,7 @@ public class Verify_Flight_Search_Functionality {
 
         // Get all date cells in the second month view
         List<WebElement> dateCells = driver.findElements(By.xpath("//div[@class='DayPicker-Month'][2]//div[@class='dateInnerCell']"));
-        lowestPricesSelection(driver, dateCells); // Call method to pick lowest price
+        lowestPricesSelection(driver, dateCells, "Departure"); // Call method to pick lowest price
 
         // ✅ Step 7: Select return date (next month lowest price)
 
@@ -119,7 +119,7 @@ public class Verify_Flight_Search_Functionality {
 
         // Get all date cells in the newly opened second month
         List<WebElement> returnDateCells = driver.findElements(By.xpath("//div[@class='DayPicker-Month'][2]//div[@class='dateInnerCell']"));
-        lowestPricesSelection(driver, returnDateCells); // Call method to pick lowest return price
+        lowestPricesSelection(driver, returnDateCells, "Return"); // Call method to pick lowest return price
 
         // ✅ Step 8: Click on the search button
         WebElement searchBtn = driver.findElement(By.xpath("//a[@class='primaryBtn font24 latoBold widgetSearchBtn ']"));
