@@ -104,18 +104,6 @@ public class Verify_Flight_Search_Functionality {
 
         // ✅ Step 6: Select lowest-priced departure date
 
-//        WebElement departureField = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//label[@for='departure']")));
-//        try {
-//            wait.until(ExpectedConditions.elementToBeClickable(departureField)).click();
-//        } catch (Exception e) {
-//            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", departureField);
-//        }
-
-//        // Wait for calendar section to be visible
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(
-//                By.xpath("//div[@class='DayPicker-Month'][2]")
-//        ));
-
         // Get all date cells in the second month view
         List<WebElement> dateCells = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(
                 By.xpath("//div[@class='DayPicker-Month'][2]//div[@class='dateInnerCell']")
