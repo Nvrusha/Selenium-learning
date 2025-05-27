@@ -77,10 +77,10 @@ public class Verify_Flight_Search_Functionality {
             System.out.println("No popup appeared.");
         }
 
-        // Click somewhere blank to dismiss any auto-focus issues
+        // ✅ Step 4: Click on 'Round Trip' tab (required to trigger proper calendar behavior)
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//ul[@class='fswTabs latoRegular darkGreyText ']//li[2]"))).click();
 
-        // ✅ Step 4: Enter 'From' city - New Delhi
+        // ✅ Step 5: Enter 'From' city - New Delhi
         WebElement fromCity = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//label[@for='fromCity']")));
         fromCity.click();
 
@@ -90,7 +90,7 @@ public class Verify_Flight_Search_Functionality {
         WebElement fromSuggestion = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='makeFlex appendTop12  forHideundefined']")));
         fromSuggestion.click();
 
-        // ✅ Step 5: Enter 'To' city - Mumbai
+        // ✅ Step 6: Enter 'To' city - Mumbai
         WebElement toCity = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//label[@for='toCity']")));
         toCity.click();
 
@@ -100,7 +100,7 @@ public class Verify_Flight_Search_Functionality {
         WebElement toSuggestion = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//ul[@role='listbox']//li[contains(@id,'section-0-item-0')]")));
         toSuggestion.click();
 
-        // ✅ Step 6: Select lowest-priced departure date
+        // ✅ Step 7: Select lowest-priced departure date
 
         // Get all date cells in the second month view
         List<WebElement> dateCells = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(
@@ -108,7 +108,7 @@ public class Verify_Flight_Search_Functionality {
         ));
         lowestPricesSelection(driver, dateCells, "Departure"); // Call method to pick lowest price
 
-        // ✅ Step 7: Select return date (next month lowest price)
+        // ✅ Step 8: Select return date (next month lowest price)
 
         // Save current month to compare after clicking next
         String currentMonth = driver.findElement(By.xpath("//div[@class='DayPicker-Caption']")).getText();
@@ -129,14 +129,14 @@ public class Verify_Flight_Search_Functionality {
                 By.xpath("//div[@class='DayPicker-Month'][2]//div[@class='dateInnerCell']"));
         lowestPricesSelection(driver, returnDateCells, "Return"); // Call method to pick lowest return price
 
-        // ✅ Step 8: Click on the search button
+        // ✅ Step 9: Click on the search button
         WebElement searchBtn = driver.findElement(By.xpath("//a[@class='primaryBtn font24 latoBold widgetSearchBtn ']"));
         searchBtn.click();
 
         // Temporary pause to visually observe the change (not recommended in real tests)
         Thread.sleep(2000);
 
-        // ✅ Step 8: Close the browser
+        // ✅ Step 10: Close the browser
         driver.quit();
     }
 }
