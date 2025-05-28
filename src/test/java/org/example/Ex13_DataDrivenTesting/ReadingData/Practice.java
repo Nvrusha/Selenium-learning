@@ -8,27 +8,30 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-/**
- * ✅ Test Scenario: Read and Print Excel Data (Data-Driven Testing)
- *
- * Objective:
- * To verify the ability to read an Excel (.xlsx) file, fetch the number of rows and columns,
- * and print each cell's data using Apache POI.
- *
- * Test Steps:
- * 1. Load the Excel file using FileInputStream.
- * 2. Access the workbook and select the sheet named "data".
- * 3. Get the total number of rows and columns.
- * 4. Loop through each row and column and print the cell data.
- * 5. Close resources properly to avoid memory leaks.
- *
- * Expected Result:
- * - Data from each cell is printed correctly to the console.
- * - No exceptions or errors while reading the file.
- */
+
 
 public class Practice {
     public static void main(String[] args) throws IOException {
+
+
+
+//         * ✅ Test Scenario: Read and Print Excel Data (Data-Driven Testing)
+//         *
+//         * Objective:
+//         * To verify the ability to read an Excel (.xlsx) file, fetch the number of rows and columns,
+//         * and print each cell's data using Apache POI.
+//         *
+//         * Test Steps:
+//         * 1. Load the Excel file using FileInputStream.
+//         * 2. Access the workbook and select the sheet named "data".
+//         * 3. Get the total number of rows and columns.
+//         * 4. Loop through each row and column and print the cell data.
+//         * 5. Close resources properly to avoid memory leaks.
+//         *
+//         * Expected Result:
+//         * - Data from each cell is printed correctly to the console.
+//         * - No exceptions or errors while reading the file.
+
 
         // Step 1: Load the Excel file
         // Use FileInputStream to read the .xlsx file located at the given path
