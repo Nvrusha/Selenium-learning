@@ -1,5 +1,7 @@
 package org.example.Ex13_DataDrivenTesting.ReadingData;
 
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -32,6 +34,15 @@ public class Practice {
         // Step 6: Print the output to validate the data size
         System.out.println("✅ Number of rows: " + totalRows);
         System.out.println("✅ Number of cells: " + totalCells);
+
+        for (int i = 0; i <= totalRows; i++) {
+            XSSFRow currentRow = sheet.getRow(i);
+
+            for (int j = 0; j < totalCells; j++) {
+                XSSFCell cell = currentRow.getCell(j);
+                System.out.println(cell.toString());
+            }
+        }
 
         // Step 7: Close the workbook (Good practice to release resources)
         workbook.close();
