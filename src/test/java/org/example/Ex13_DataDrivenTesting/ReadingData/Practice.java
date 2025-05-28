@@ -30,8 +30,8 @@ public class Practice {
         int totalCells = sheet.getRow(1).getLastCellNum();
 
         // Step 6: Print the output to validate the data size
-        System.out.println("✅ Number of rows (excluding header): " + totalRows);
-        System.out.println("✅ Number of cells in row 1: " + totalCells);
+        System.out.println("✅ Number of rows: " + totalRows);
+        System.out.println("✅ Number of cells: " + totalCells);
 
         // Step 7: Close the workbook (Good practice to release resources)
         workbook.close();
