@@ -64,9 +64,11 @@ public class Practice {
             for (int j = 0; j < totalCells; j++) {
                 XSSFCell cell = currentRow.getCell(j); // Get each cell in the row
 
-                // Print the cell value as a string (will automatically convert numeric, string, etc.)
-                System.out.println(cell.toString()+ "\t");
+                // Print the cell value followed by a tab (stay on same line)
+                System.out.print(cell.toString() + "\t\t"); // Extra tab for better spacing
             }
+
+            // After finishing each row, move to a new line
             System.out.println();
         }
 
