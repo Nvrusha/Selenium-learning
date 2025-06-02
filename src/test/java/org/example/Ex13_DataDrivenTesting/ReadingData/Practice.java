@@ -65,8 +65,9 @@ public class Practice {
                 XSSFCell cell = currentRow.getCell(j); // Get each cell in the row
 
                 // Print the cell value as a string (will automatically convert numeric, string, etc.)
-                System.out.println(cell.toString());
+                System.out.println(cell.toString()+ "\t");
             }
+            System.out.println();
         }
 
         // Step 8: Close the workbook and file to release memory/resources
