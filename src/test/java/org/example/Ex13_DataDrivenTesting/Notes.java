@@ -34,6 +34,7 @@ public class Notes {
 
          * ✅ Key Components in Excel-based DDT:
          * - FileInputStream: To read the file from the system
+         * - FileOutputStream: To write in the file from system.
          * - XSSFWorkbook / HSSFWorkbook: Workbook representation of .xlsx or .xls
          * - XSSFSheet: Specific sheet inside the workbook
          * - XSSFRow & XSSFCell: Representing rows and cells for accessing data
