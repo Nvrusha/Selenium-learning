@@ -65,7 +65,7 @@ public class Practice {
                 XSSFCell cell = currentRow.getCell(j); // Get each cell in the row
 
                 // Print the cell value followed by a tab (stay on same line)
-                System.out.print(cell.toString() + "\t\t"); // Extra tab for better spacing
+                System.out.print(cell.toString() + "\t\t\t"); // Extra tab for better spacing
             }
 
             // After finishing each row, move to a new line
