@@ -40,7 +40,7 @@ public class WritingDynamicData {
         Scanner sc = new Scanner(System.in);
 
         // Step 3: Ask user for number of rows and columns
-        System.out.print("Enter number of rows of data (excluding headers): ");
+        System.out.print("Enter number of rows:  ");
         int rowNum = sc.nextInt();
 
         System.out.print("Enter number of cells (columns): ");
