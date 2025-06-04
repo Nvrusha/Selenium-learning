@@ -32,48 +32,49 @@ public class WritingDynamicData {
          */
 
         // Step 1: Create a new workbook (represents Excel file in memory)
-        XSSFWorkbook workbook = new XSSFWorkbook();
+        XSSFWorkbook workbook = new XSSFWorkbook(); // This creates an in-memory Excel workbook
 
         // Step 2: Create a sheet named "DynamicData"
-        XSSFSheet sheet = workbook.createSheet("DynamicData");
+        XSSFSheet sheet = workbook.createSheet("DynamicData"); // Creates a worksheet inside the workbook
 
         Scanner sc = new Scanner(System.in);
 
         // Step 3: Ask user for number of rows and columns
         System.out.print("Enter number of rows:  ");
-        int rowNum = sc.nextInt();
+        int rowNum = sc.nextInt(); // Number of data rows user wants to input
 
         System.out.print("Enter number of cells (columns): ");
-        int cellNum = sc.nextInt();
+        int cellNum = sc.nextInt(); // Number of columns per row
 
-        sc.nextLine(); // Consume newline character after integer input
+        sc.nextLine(); // Consume newline character after integer input to avoid skipping nextLine()
 
         // Step 4 (Optional): Add a header row
-        XSSFRow header = sheet.createRow(0);
+        XSSFRow header = sheet.createRow(0); // Create first row for headers
         for (int c = 0; c < cellNum; c++) {
             System.out.print("Enter header name for column " + (c + 1) + ": ");
-            String headerName = sc.nextLine();
-            header.createCell(c).setCellValue(headerName);
+            String headerName = sc.nextLine(); // Read column header from user
+            header.createCell(c).setCellValue(headerName); // Write header to Excel cell
         }
 
         // Step 5: Accept row-wise data from user and store in Excel
         for (int r = 1; r <= rowNum; r++) { // Start from 1 because 0 is header
-            XSSFRow row = sheet.createRow(r);
+            XSSFRow row = sheet.createRow(r); // Create new row at index r
 
             for (int c = 0; c < cellNum; c++) {
                 System.out.print("Enter data for row " + r + ", column " + (c + 1) + ": ");
-                String value = sc.nextLine();
-                row.createCell(c).setCellValue(value);
+                String value = sc.nextLine(); // Read cell data from user
+                row.createCell(c).setCellValue(value); // Write cell data to Excel
             }
         }
 
         // Step 6: Save the workbook to a file
+        // Saves the created workbook as an Excel file under "TestData" folder inside the project directory
         FileOutputStream file = new FileOutputStream(System.getProperty("user.dir") + "\\TestData\\myFile1.xlsx");
-        workbook.write(file);
+        workbook.write(file); // Write workbook content to file system
 
         // Step 7: Close resources
-        workbook.close();
-        file.close();
+        workbook.close(); // Release workbook memory
+        file.close();     // Close file stream
 
         System.out.println("✅ File 'myFile1.xlsx' created successfully with dynamic data.");
     }
