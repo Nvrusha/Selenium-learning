@@ -45,4 +45,26 @@ public class ExcelUtils {
 
     }
 
+    public static String getCellData (String filePath, String sheetName, int rowNum, int colNum) throws IOException {
+
+        fi = new FileInputStream(filePath);
+        wb = new XSSFWorkbook(fi);
+        ws = wb.getSheet(sheetName);
+        row = ws.getRow(rowNum);
+        cell = row.getCell(colNum);
+
+        String data;
+
+        try {
+            data = cell.toString();
+        }
+        catch (Exception e){
+            data = "";
+        }
+
+        wb.close();
+        fi.close();
+        return data;
+    }
+
 }
