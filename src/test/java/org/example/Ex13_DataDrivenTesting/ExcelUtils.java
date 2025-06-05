@@ -32,4 +32,17 @@ public class ExcelUtils {
 
     }
 
+    public static int getCellCount(String filePath, String sheetName, int rowNum) throws IOException {
+
+        fi = new FileInputStream(filePath);
+        wb = new XSSFWorkbook(fi);
+        ws = wb.getSheet(sheetName);
+        row = ws.getRow(rowNum);
+        int cellCount = row.getLastCellNum();
+        wb.close();
+        fi.close();
+        return cellCount;
+
+    }
+
 }
