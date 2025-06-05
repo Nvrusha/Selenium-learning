@@ -66,4 +66,20 @@ public class ExcelUtils {
         return data;
     }
 
+    public static void setCellData (String filePath, String sheetName, int rowNum, int colNum, String data) throws IOException {
+
+        fi = new FileInputStream(filePath);
+        wb = new XSSFWorkbook(fi);
+        ws = wb.getSheet(sheetName);
+        row = ws.getRow(rowNum);
+        cell = row.createCell(colNum);
+        cell.setCellValue(data);
+        fo = new FileOutputStream(filePath);
+        wb.write(fo);
+
+        fo.close();
+        wb.close();
+        fi.close();
+    }
+
 }
