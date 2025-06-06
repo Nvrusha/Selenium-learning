@@ -1,8 +1,10 @@
 package org.example.Projects.moneycontrol;
 
 import org.example.Ex13_DataDrivenTesting.ExcelUtils;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 
 import java.io.IOException;
 import java.time.Duration;
@@ -33,6 +35,16 @@ public class FDCalculator_DDT {
 
 
             // Pass excel data into application
+
+            driver.findElement(By.xpath("//input[@id='principal']")).sendKeys(principleAmount);
+            driver.findElement(By.xpath("//input[@id='interest']")).sendKeys(rateOfInterest);
+            driver.findElement(By.xpath("//input[@id='tenure']")).sendKeys(period);
+
+            Select periodDropDown = new Select(driver.findElement(By.xpath("//select[@id='tenurePeriod']")));
+            periodDropDown.selectByVisibleText(periodType);
+
+            Select frequencyDropDown = new Select(driver.findElement(By.xpath("//select[@id='frequency']")));
+            frequencyDropDown.selectByVisibleText(frequency);
 
             // Validate the results
         }
