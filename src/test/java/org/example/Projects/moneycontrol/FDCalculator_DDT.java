@@ -3,13 +3,11 @@ package org.example.Projects.moneycontrol;
 import org.example.Ex13_DataDrivenTesting.ExcelUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
-
 import java.io.IOException;
 import java.time.Duration;
-import java.util.List;
+
 
 public class FDCalculator_DDT {
     public static void main(String[] args) throws IOException, InterruptedException {
@@ -58,17 +56,17 @@ public class FDCalculator_DDT {
             String actualMaturity = driver.findElement(By.xpath("//span[@id='resp_matval']//strong")).getText();
 
             if (Double.parseDouble(expectedMaturity) == Double.parseDouble(actualMaturity)){
-                System.out.println("Test passed");
+                System.out.println("Test passed ✅");
                 ExcelUtils.setCellData(filePath,"Sheet1", i, 6, "Passed");
                 ExcelUtils.fillGreenColor(filePath,"Sheet1", i, 6);
             }
             else {
-                System.out.println("Test failed");
+                System.out.println("Test failed ❌");
                 ExcelUtils.setCellData(filePath,"Sheet1", i, 6, "Failed");
                 ExcelUtils.fillRedColor(filePath,"Sheet1", i, 6);
             }
 
-            Thread.sleep(3000);
+            Thread.sleep(2000);
             driver.findElement(By.xpath("//div[@class='CTR PT15']//a[2]")).click();
 
         }
