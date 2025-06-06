@@ -98,7 +98,7 @@ public class ExcelUtils {
     /**
      * Fills the specified cell with green background color (typically for pass status).
      */
-    public static void fillGreenColor(String filePath, String sheetName, int rowNum, int colNum, String data) throws IOException {
+    public static void fillGreenColor(String filePath, String sheetName, int rowNum, int colNum) throws IOException {
         fi = new FileInputStream(filePath);
         wb = new XSSFWorkbook(fi);
         ws = wb.getSheet(sheetName);
@@ -124,7 +124,7 @@ public class ExcelUtils {
     /**
      * Fills the specified cell with red background color (typically for fail status).
      */
-    public static void fillRedColor(String filePath, String sheetName, int rowNum, int colNum, String data) throws IOException {
+    public static void fillRedColor(String filePath, String sheetName, int rowNum, int colNum) throws IOException {
         fi = new FileInputStream(filePath);
         wb = new XSSFWorkbook(fi);
         ws = wb.getSheet(sheetName);

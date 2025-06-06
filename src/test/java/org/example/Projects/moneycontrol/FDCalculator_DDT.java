@@ -59,12 +59,13 @@ public class FDCalculator_DDT {
 
             if (Double.parseDouble(expectedMaturity) == Double.parseDouble(actualMaturity)){
                 System.out.println("Test passed");
-                //ExcelUtils.setCellData(filePath,"Sheet1", i, 6, "Passed");
-                ExcelUtils.fillGreenColor(filePath,"Sheet1", i, 6,"Passed");
+                ExcelUtils.setCellData(filePath,"Sheet1", i, 6, "Passed");
+                ExcelUtils.fillGreenColor(filePath,"Sheet1", i, 6);
             }
             else {
                 System.out.println("Test failed");
-                ExcelUtils.fillRedColor(filePath,"Sheet1", i, 6,"Failed");
+                ExcelUtils.setCellData(filePath,"Sheet1", i, 6, "Failed");
+                ExcelUtils.fillRedColor(filePath,"Sheet1", i, 6);
             }
 
             Thread.sleep(3000);
