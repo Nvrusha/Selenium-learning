@@ -75,5 +75,6 @@ public class Practice {
         // Step 8: Close the workbook and file to release memory/resources
         workbook.close();
         file.close();
+
     }
 }
