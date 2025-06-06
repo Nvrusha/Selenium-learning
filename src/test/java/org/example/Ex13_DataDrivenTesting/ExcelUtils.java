@@ -1,8 +1,6 @@
 package org.example.Ex13_DataDrivenTesting;
 
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.FillPatternType;
-import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -64,7 +62,9 @@ public class ExcelUtils {
 
         String data;
         try {
-            data = cell.toString();                         // Convert cell value to string
+            DataFormatter formatter = new DataFormatter();
+            data = formatter.formatCellValue(cell);      // Convert cell value to string
+
         } catch (Exception e) {
             data = "";                                      // Return empty if cell is null
         }
