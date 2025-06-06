@@ -105,6 +105,27 @@ public class ExcelUtils {
         fi.close();
     }
 
+    public static void fillRedColor (String filePath, String sheetName, int rowNum, int colNum, String data) throws IOException {
+
+        fi = new FileInputStream(filePath);
+        wb = new XSSFWorkbook(fi);
+        ws = wb.getSheet(sheetName);
+        row = ws.getRow(rowNum);
+        cell = row.getCell(colNum);
+
+        style = wb.createCellStyle();
+
+        style.setFillForegroundColor(IndexedColors.RED.getIndex());
+        style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+
+        cell.setCellStyle(style);
+        fo = new FileOutputStream(filePath);
+        wb.write(fo);
+        fo.close();
+        wb.close();
+        fi.close();
+    }
+
 
 
 }
