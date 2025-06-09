@@ -53,11 +53,16 @@ public class ReadingKeyAndValue {
         // Print a separator for clarity
         System.out.println("---------- All Keys ----------");
 
-        // Get and print all the keys in the properties file
+        // Get and print all the keys in the properties file--> Method 1
         Set<String> keys = properties.stringPropertyNames();
         for (String key : keys) {
             System.out.println(key);
         }
+
+        // Get and print all the keys in the properties file--> Method 2
+        // Set<Object> keys = properties.keySet();
+        // System.out.println(keys);
+
 
         // Close the FileInputStream
         file.close();
