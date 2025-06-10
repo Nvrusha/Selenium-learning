@@ -2,6 +2,7 @@ package org.example.Ex13_DataDrivenTesting.ReadingPropertiesFile;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Properties;
 import java.util.Set;
 
@@ -49,6 +50,10 @@ public class ReadingKeyAndValue {
         System.out.println("Username: " + username);
         System.out.println("Password: " + password);
         System.out.println("Timeout: " + timeout);
+
+        // Reading values without passing keys
+        Collection<Object> values = properties.values();
+        System.out.println("Values: " + values);
 
         // Print a separator for clarity
         System.out.println("---------- All Keys ----------");
