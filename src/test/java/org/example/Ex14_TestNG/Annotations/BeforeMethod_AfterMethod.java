@@ -1,5 +1,6 @@
 package org.example.Ex14_TestNG.Annotations;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
@@ -31,6 +32,13 @@ public class BeforeMethod_AfterMethod {
         else {
             System.out.println("Title is incorrect..");
         }
+    }
+
+    // ✅ Test 2: Check username field is present
+    @Test
+    void testUsernameFieldPresent(){
+        boolean isPresent = driver.findElement(By.name("username")).isDisplayed();
+        System.out.println("Username field is present: " + isPresent);
     }
 
     // ✅ Runs after every @Test method
