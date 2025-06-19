@@ -1,0 +1,1 @@
+{"uuid":"71234694-d2a8-4388-bdff-0ded67d4c793","name":"org.example.Ex14_TestNG.OrangeHRMTest","children":["97f85664-0b0c-4ae2-bb85-8839422be54f"],"befores":[{"name":"openApp","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1750224305966,"stop":1750224324891}],"afters":[],"start":1750224305926,"stop":1750224327565}

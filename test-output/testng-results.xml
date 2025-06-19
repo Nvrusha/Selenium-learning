@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="5" passed="5" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2025-06-18T13:39:13 IST" name="All Test Suite" finished-at="2025-06-18T13:39:19 IST" duration-ms="5914">
+    <groups>
+    </groups>
+    <test started-at="2025-06-18T13:39:13 IST" name="C:/Users/visha/IdeaProjects/Selenium/src/test/java/org/example/Ex14_TestNG" finished-at="2025-06-18T13:39:19 IST" duration-ms="5914">
+      <class name="org.example.Ex14_TestNG.OrangeHRMTest">
+        <test-method is-config="true" signature="openApp()[pri:0, instance:org.example.Ex14_TestNG.OrangeHRMTest@27406a17]" started-at="2025-06-18T13:39:13 IST" name="openApp" finished-at="2025-06-18T13:39:18 IST" duration-ms="5083" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openApp -->
+        <test-method signature="testLogo()[pri:2, instance:org.example.Ex14_TestNG.OrangeHRMTest@27406a17]" started-at="2025-06-18T13:39:18 IST" name="testLogo" finished-at="2025-06-18T13:39:18 IST" duration-ms="394" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLogo -->
+        <test-method signature="testLogin()[pri:3, instance:org.example.Ex14_TestNG.OrangeHRMTest@27406a17]" started-at="2025-06-18T13:39:18 IST" name="testLogin" finished-at="2025-06-18T13:39:19 IST" duration-ms="197" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLogin -->
+        <test-method is-config="true" signature="testLogout()[pri:0, instance:org.example.Ex14_TestNG.OrangeHRMTest@27406a17]" started-at="2025-06-18T13:39:19 IST" name="testLogout" finished-at="2025-06-18T13:39:19 IST" duration-ms="77" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLogout -->
+      </class> <!-- org.example.Ex14_TestNG.OrangeHRMTest -->
+      <class name="org.example.Ex14_TestNG.Notes">
+        <test-method signature="openapp()[pri:1, instance:org.example.Ex14_TestNG.Notes@4d154ccd]" started-at="2025-06-18T13:39:13 IST" name="openapp" finished-at="2025-06-18T13:39:13 IST" duration-ms="53" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openapp -->
+        <test-method signature="login()[pri:2, instance:org.example.Ex14_TestNG.Notes@4d154ccd]" started-at="2025-06-18T13:39:13 IST" name="login" finished-at="2025-06-18T13:39:13 IST" duration-ms="2" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- login -->
+        <test-method signature="logout()[pri:3, instance:org.example.Ex14_TestNG.Notes@4d154ccd]" started-at="2025-06-18T13:39:13 IST" name="logout" finished-at="2025-06-18T13:39:13 IST" duration-ms="2" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- logout -->
+      </class> <!-- org.example.Ex14_TestNG.Notes -->
+    </test> <!-- C:/Users/visha/IdeaProjects/Selenium/src/test/java/org/example/Ex14_TestNG -->
+  </suite> <!-- All Test Suite -->
+</testng-results>
