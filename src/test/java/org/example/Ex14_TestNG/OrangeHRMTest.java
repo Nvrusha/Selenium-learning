@@ -11,50 +11,65 @@ import java.time.Duration;
 
 public class OrangeHRMTest {
 
-    WebDriver driver; // declared at class level
+    WebDriver driver; // WebDriver instance declared at class level for reuse in all test methods
 
+    /*
+     * Test Scenario:
+     * --------------
+     * Verify that a user can log in successfully to the OrangeHRM application.
+     *
+     * Test Steps:
+     * 1. Launch the browser and open the OrangeHRM login page.
+     * 2. Verify that the login page logo is displayed.
+     * 3. Enter valid login credentials (username and password).
+     * 4. Click on the login button and ensure login is successful.
+     * 5. Close the browser.
+     */
 
-    // This method runs once before all test methods
+    // Precondition: Launch application (runs once before all test methods)
     @BeforeClass
     void openApp() {
-        // Launch Chrome browser
+        // Step 1: Launch Chrome browser
         driver = new ChromeDriver();
 
-        // Maximize the browser window
+        // Maximize browser window
         driver.manage().window().maximize();
 
-        // Set implicit wait to handle dynamic elements
+        // Implicit wait to handle delays in loading elements
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
         // Navigate to the OrangeHRM login page
         driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
     }
 
-    // This is the second test case (executed after openApp)
+    // Test Case 1: Verify that the OrangeHRM logo is displayed on the login page
     @Test(priority = 2)
     void testLogo() {
-        // Verify if the OrangeHRM logo is displayed
+        // Step 2: Check if logo is displayed to ensure correct page is loaded
         boolean status = driver.findElement(By.xpath("//div[@class='orangehrm-login-branding']")).isDisplayed();
         System.out.println("Logo displayed: " + status);
+        // Assertion can be added here in real-world testing
     }
 
-    // This is the third test case (executed after testLogo)
+    // Test Case 2: Verify successful login with valid credentials
     @Test(priority = 3)
     void testLogin() {
-        // Enter username
+        // Step 3: Enter username
         driver.findElement(By.xpath("//input[@name='username']")).sendKeys("Admin");
 
-        // Enter password
+        // Step 4: Enter password
         driver.findElement(By.xpath("//input[@name='password']")).sendKeys("admin123");
 
-        // Click on the login button
+        // Step 5: Click login
         driver.findElement(By.xpath("//button[@type='submit']")).click();
+
+        // Validation of login success (like checking for dashboard element) can be added here
     }
 
-    // This method runs once after all test methods
+    // Postcondition: Close the application (runs once after all tests)
     @AfterClass
     void testLogout() {
-        // Close the browser
+        // Step 6: Close the browser to clean up the session
         driver.close();
     }
 }
