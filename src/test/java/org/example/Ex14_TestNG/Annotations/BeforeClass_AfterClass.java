@@ -8,9 +8,9 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
-import java.util.PriorityQueue;
 
 public class BeforeClass_AfterClass {
+
     /*
      * ✅ Test Scenario: Validate login functionality on Saucedemo
      *
@@ -23,47 +23,59 @@ public class BeforeClass_AfterClass {
      *
      * 🔁 Execution Flow:
      * - Setup runs once before all tests
-     * - Two test cases run
+     * - Two test methods run
      * - Teardown runs once after all tests
      */
 
-    WebDriver driver;
+    WebDriver driver; // Declared globally so it can be used in all test methods
 
+    // ✅ Executed once before all @Test methods
     @BeforeClass
     void setup(){
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.manage().window().maximize();
-        driver.get("https://www.saucedemo.com/");
+        driver = new ChromeDriver(); // Launch browser
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); // Implicit wait for elements
+        driver.manage().window().maximize(); // Maximize browser window
+        driver.get("https://www.saucedemo.com/"); // Open test URL
     }
 
-    // ✅ Test 1: Verify login form elements are displayed
+    // ✅ Test 1: Verify that login form UI elements are displayed correctly
     @Test(priority = 1)
     void verifyLoginFormElements(){
+        // Check visibility of username input field
         boolean usernamePresent = driver.findElement(By.name("user-name")).isDisplayed();
+
+        // Check visibility of password input field
         boolean passwordPresent = driver.findElement(By.name("password")).isDisplayed();
+
+        // Check visibility of login button
         boolean loginBtnPresent  = driver.findElement(By.name("login-button")).isDisplayed();
 
+        // Print results
         System.out.println("Username field displayed: " + usernamePresent);
         System.out.println("Password field displayed: " + passwordPresent);
         System.out.println("Login button displayed: " + loginBtnPresent);
     }
 
-    // ✅ Test 2: Perform login and validate successful login
+    // ✅ Test 2: Log in with valid credentials and verify user is redirected
     @Test(priority = 2)
     void performLogin(){
-        driver.findElement(By.id("user-name")).sendKeys("standard_user");  // valid username
-        driver.findElement(By.id("password")).sendKeys("secret_sauce");    // valid password
+        // Enter valid username
+        driver.findElement(By.id("user-name")).sendKeys("standard_user");
+
+        // Enter valid password
+        driver.findElement(By.id("password")).sendKeys("secret_sauce");
+
+        // Click on the login button
         driver.findElement(By.id("login-button")).click();
 
-        // Verify user is redirected to inventory page
+        // Validate login by checking if URL contains 'inventory'
         boolean isLoggedIn = driver.getCurrentUrl().contains("inventory");
         System.out.println("Login successful: " + isLoggedIn);
     }
 
+    // ✅ Executed once after all @Test methods
     @AfterClass
     void tearDown() {
-        driver.quit();  // Close browser
+        driver.quit();  // Close all browser windows and end WebDriver session
     }
-
 }
