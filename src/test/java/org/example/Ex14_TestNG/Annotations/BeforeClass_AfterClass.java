@@ -49,6 +49,18 @@ public class BeforeClass_AfterClass {
         System.out.println("Login button displayed: " + loginBtnPresent);
     }
 
+    // ✅ Test 2: Perform login and validate successful login
+    @Test(priority = 2)
+    void performLogin(){
+        driver.findElement(By.id("user-name")).sendKeys("standard_user");  // valid username
+        driver.findElement(By.id("password")).sendKeys("secret_sauce");    // valid password
+        driver.findElement(By.id("login-button")).click();
+
+        // Verify user is redirected to inventory page
+        boolean isLoggedIn = driver.getCurrentUrl().contains("inventory");
+        System.out.println("Login successful: " + isLoggedIn);
+    }
+
     @AfterClass
     void tearDown() {
         driver.quit();  // Close browser
