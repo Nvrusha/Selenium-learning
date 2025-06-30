@@ -36,6 +36,7 @@ public class BeforeClass_AfterClass {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); // Implicit wait for elements
         driver.manage().window().maximize(); // Maximize browser window
         driver.get("https://www.saucedemo.com/"); // Open test URL
+        System.out.println("This is Before class...");
     }
 
     // ✅ Test 1: Verify that login form UI elements are displayed correctly
@@ -77,5 +78,6 @@ public class BeforeClass_AfterClass {
     @AfterClass
     void tearDown() {
         driver.quit();  // Close all browser windows and end WebDriver session
+        System.out.println("This is After class...");
     }
 }

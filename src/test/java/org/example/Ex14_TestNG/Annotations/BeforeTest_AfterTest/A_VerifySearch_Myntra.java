@@ -12,7 +12,7 @@ public class A_VerifySearch_Myntra {
     // ✅ @BeforeTest runs once before any @Test method in this suite
     @BeforeTest
     void launchBrowser() {
-        System.out.println("Launching browser...");
+        System.out.println("This is before test...");
 
         // Initialize Chrome browser
         DriverManager.driver = new ChromeDriver();

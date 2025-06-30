@@ -21,7 +21,7 @@ public class B_VerifyFilters_Myntra {
     // ✅ @AfterTest runs once after all @Test methods in the suite
     @AfterTest
     void tearDown() {
-        System.out.println("Closing browser...");
+        System.out.println("This is After test");
 
         // Close the browser and end WebDriver session
         DriverManager.driver.quit();

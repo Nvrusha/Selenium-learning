@@ -40,6 +40,7 @@ public class BeforeMethod_AfterMethod {
 
         // Navigate to OrangeHRM login page
         driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+        System.out.println("This is Before method...");
     }
 
     // ✅ Test 1: Validate the page title
@@ -74,5 +75,6 @@ public class BeforeMethod_AfterMethod {
     void teardown() {
         // Quit the browser to clean up session
         driver.quit();
+        System.out.println("This is After method...");
     }
 }
