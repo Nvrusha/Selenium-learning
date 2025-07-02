@@ -29,6 +29,7 @@ public class Practice {
     void openApp() {
         // Intentionally failing this test to see dependency behavior
         Assert.assertTrue(false);  // This will fail the test
+        //Assert.assertTrue(true);  // This assertion passes
         System.out.println("✅ Opened app successfully...");
     }
 
