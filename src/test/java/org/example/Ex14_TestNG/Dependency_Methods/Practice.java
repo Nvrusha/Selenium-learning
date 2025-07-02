@@ -11,7 +11,7 @@ public class Practice {
      * --------------------
      * - Used when one test method depends on the successful execution of another test method.
      * - Controls execution flow in test automation.
-     * - If the dependent method fails, the child tests will be SKIPPED automatically.
+     * - If a parent method fails, all dependent (child) methods will automatically be SKIPPED.
      *
      * ✅ Syntax:
      * --------------------
@@ -20,55 +20,63 @@ public class Practice {
      *     // Test steps
      * }
      *
-     * ✅ Example Scenario: (OpenApp → Login → Search → Add to Cart)
+     * ✅ Real-life Example Scenario: (Open App → Login → Search → Add to Cart)
      * --------------------
      */
 
-
+    // ✅ Test 1: Open the application
     @Test(priority = 1)
-        void openApp(){
-            Assert.assertTrue(false);
+    void openApp() {
+        // Intentionally failing this test to see dependency behavior
+        Assert.assertTrue(false);  // This will fail the test
         System.out.println("✅ Opened app successfully...");
-
-        }
-
-
-    // ✅ 1st Test: Login functionality
-    @Test(priority = 2, dependsOnMethods = {"openApp"})
-    void login() {
-        // This is the first independent test
-        Assert.assertTrue(true);
-        System.out.println("✅ Login Test: Successfully logged in...");
-        // Imagine a real assertion here
     }
 
-    // ✅ 2nd Test: Product search, which depends on login success
+    // ✅ Test 2: Login functionality (Depends on openApp)
+    @Test(priority = 2, dependsOnMethods = {"openApp"})
+    void login() {
+        // This test will only run if openApp() passes
+        Assert.assertTrue(true);  // This assertion passes
+        System.out.println("✅ Login Test: Successfully logged in...");
+    }
+
+    // ✅ Test 3: Product Search functionality (Depends on login)
     @Test(dependsOnMethods = {"login"})
     void searchProductTest() {
-        // This test will only run if loginTest passes
-        Assert.assertTrue(true);
+        // This test will only run if login() passes
+        Assert.assertTrue(true);  // Dummy pass
         System.out.println("✅ Search Test: Product search executed after successful login...");
     }
 
-    // ✅ 3rd Test: Adding product to cart, which depends on search success
+    // ✅ Test 4: Add to Cart functionality (Depends on searchProductTest)
     @Test(dependsOnMethods = {"searchProductTest"})
     void addToCartTest() {
-        // This test runs only if searchProductTest passes
+        // This test will only run if searchProductTest() passes
         System.out.println("✅ Add to Cart Test: Product added to cart after search...");
     }
 
     /*
-     * ✅ Execution Flow:
+     * ✅ Expected Execution Flow:
      * --------------------
-     * 1) TestNG will first run: loginTest()
-     * 2) If login passes → then runs searchProductTest()
-     * 3) If search passes → then runs addToCartTest()
-     * 4) If any parent test fails, the child tests are marked as SKIPPED
+     * Step 1: TestNG first runs openApp()
+     * Step 2: If openApp passes → Runs login()
+     * Step 3: If login passes → Runs searchProductTest()
+     * Step 4: If searchProductTest passes → Runs addToCartTest()
+     *
+     * ✅ BUT:
+     * Since openApp() FAILS (intentionally failed using Assert.assertTrue(false)),
+     * → All dependent tests (login, searchProductTest, addToCartTest) will be SKIPPED!
      *
      * ✅ Interview Tip:
      * --------------------
-     * - If a method has multiple dependencies:
+     * - Very useful in real projects for setting pre-conditions like:
+     *   Open browser → Login → Perform actions → Logout
+     * - Avoids meaningless execution when preconditions fail.
+     *
+     * ✅ Notes:
+     * --------------------
+     * - You can also set multiple dependencies like this:
      *   @Test(dependsOnMethods = {"method1", "method2"})
-     *   → This test will only run if both method1 and method2 PASS.
+     *   → Test will run only if BOTH method1 and method2 pass.
      */
 }
