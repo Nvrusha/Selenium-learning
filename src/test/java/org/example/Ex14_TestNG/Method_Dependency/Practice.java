@@ -1,4 +1,4 @@
-package org.example.Ex14_TestNG.Dependency_Methods;
+package org.example.Ex14_TestNG.Method_Dependency;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
