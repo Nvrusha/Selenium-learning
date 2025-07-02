@@ -3,7 +3,7 @@ package org.example.Ex14_TestNG.Grouping;
 import org.testng.annotations.Test;
 
 public class SearchTests {
-    @Test(groups = {"sanity", "smoke"})
+    @Test(groups = {"sanity", "smoke", "functional"})
     void searchWithValidKeyword() {
         System.out.println("✅ Search with valid keyword");
     }

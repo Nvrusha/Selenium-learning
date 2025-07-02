@@ -4,7 +4,7 @@ import org.testng.annotations.Test;
 
 public class LoginTests {
 
-    @Test(groups = {"smoke", "sanity"})
+    @Test(groups = {"smoke", "sanity", "functional"})
     void loginWithValidCredentials() {
         System.out.println("✅ Login with valid credentials");
     }
