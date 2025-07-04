@@ -22,11 +22,16 @@ public class Using_DataProvider {
     }
 
     @Test
-    void login(){
+    void login() throws InterruptedException {
         driver.get("https://tutorialsninja.com/demo/index.php?route=account/login");
         driver.manage().window().maximize();
         driver.findElement(By.xpath("//input[@name='email']")).sendKeys("abc@gmail.com");
         driver.findElement(By.xpath("//input[@name='password']")).sendKeys("User1234");
+        driver.findElement(By.xpath("//input[@value='Login']")).click();
+
+        Thread.sleep(2000);
+
+
 
     }
 
