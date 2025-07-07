@@ -4,10 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.time.Duration;
 
@@ -49,5 +46,18 @@ public class Using_DataProvider {
     @AfterClass
     void tearDown(){
         driver.quit();
+    }
+
+    @DataProvider
+    Object [][] loginData(){
+
+         Object data [][] = {
+                {"nivangunevrushali.vn@gmail.com", "Vrusha123$"},
+                {"abc@gmail.com", "abc123$"},
+                {"test@gmail.com", "test123@"},
+                {"user1@example.com", "pass1"},
+                {"user2@example.com", "pass2"}
+        };
+        return data;
     }
 }
