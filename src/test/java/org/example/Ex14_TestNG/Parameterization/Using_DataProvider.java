@@ -19,12 +19,12 @@ public class Using_DataProvider {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
-    @Test
-    void login() throws InterruptedException {
+    @Test(dataProvider = "login")
+    void login(String email, String pwd) throws InterruptedException {
         driver.get("https://tutorialsninja.com/demo/index.php?route=account/login");
         driver.manage().window().maximize();
-        driver.findElement(By.xpath("//input[@name='email']")).sendKeys("nivangunevrushali.vn@gmail.com");
-        driver.findElement(By.xpath("//input[@name='password']")).sendKeys("Vrusha123$");
+        driver.findElement(By.xpath("//input[@name='email']")).sendKeys(email);
+        driver.findElement(By.xpath("//input[@name='password']")).sendKeys(pwd);
         driver.findElement(By.xpath("//input[@value='Login']")).click();
 
         Thread.sleep(2000);
@@ -48,7 +48,7 @@ public class Using_DataProvider {
         driver.quit();
     }
 
-    @DataProvider
+    @DataProvider(name = "login")
     Object [][] loginData(){
 
          Object data [][] = {
