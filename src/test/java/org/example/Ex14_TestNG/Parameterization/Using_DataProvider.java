@@ -62,7 +62,7 @@ public class Using_DataProvider {
     }
 
     // ✅ DataProvider method supplying email-password combinations
-    @DataProvider(name = "login")
+    @DataProvider(name = "login", indices = {0,1})
     Object[][] loginData() {
         Object data[][] = {
                 {"nivangunevrushali.vn@gmail.com", "Vrusha123$"},  // valid
