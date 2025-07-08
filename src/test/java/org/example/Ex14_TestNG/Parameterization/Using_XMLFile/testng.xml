@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd"><suite name="All Test Suite"><test verbose="2" preserve-order="true" name="C:/Users/visha/IdeaProjects/Selenium/src/test/java/org/example/Ex14_TestNG/Parameterization/Using_XMLFile/XML_ParallelTesting.java"><classes><class name="org.example.Ex14_TestNG.Parameterization.Using_XMLFile.XML_ParallelTesting"><methods><include name="testLogo"/><include name="testTitle"/><include name="testURL"/></methods></class></classes></test></suite>
