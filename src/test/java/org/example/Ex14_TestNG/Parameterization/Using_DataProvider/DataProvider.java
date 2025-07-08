@@ -1,4 +1,4 @@
-package org.example.Ex14_TestNG.Parameterization;
+package org.example.Ex14_TestNG.Parameterization.Using_DataProvider;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -8,7 +8,7 @@ import org.testng.annotations.*;
 
 import java.time.Duration;
 
-public class Using_DataProvider {
+public class DataProvider {
 
     WebDriver driver;
 
@@ -75,7 +75,7 @@ public class Using_DataProvider {
 
     // ✅ DataProvider method supplies multiple sets of email-password combinations.
     // Each array represents a single test run with one set of login credentials.
-    @DataProvider(name = "login", indices = {0, 1})
+    @org.testng.annotations.DataProvider(name = "login", indices = {0, 1})
     Object[][] loginData() {
         Object data[][] = {
                 {"nivangunevrushali.vn@gmail.com", "Vrusha123$"},  // ✅ valid credentials (will pass)
