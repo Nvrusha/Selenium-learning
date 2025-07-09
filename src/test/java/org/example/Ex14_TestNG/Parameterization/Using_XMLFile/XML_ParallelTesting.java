@@ -1,11 +1,15 @@
 package org.example.Ex14_TestNG.Parameterization.Using_XMLFile;
 
+import org.apache.poi.ss.formula.atp.Switch;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
@@ -17,9 +21,28 @@ public class XML_ParallelTesting {
     // ✅ This method runs once before any @Test method in the class.
     // It is used to launch the browser and perform basic setup like timeouts and opening the application URL.
     @BeforeClass
-    void setUp() {
+    @Parameters({"browser"})
+    void setUp(String br) {
         // Launching a new Chrome browser instance
-        driver = new ChromeDriver();
+
+        switch (br)
+        {
+            case "chrome":driver = new ChromeDriver();
+            break;
+
+            case "edge": driver = new EdgeDriver();
+            break;
+
+            case "firefox": driver = new FirefoxDriver();
+            break;
+
+            default:
+                System.out.println("Invalid browser");
+                return;
+        }
+
+
+
 
         // Setting implicit wait to handle dynamic elements (max wait 10 seconds)
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
