@@ -5,10 +5,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
+import org.testng.annotations.DataProvider;
 
 import java.time.Duration;
 
-public class DataProvider {
+public class Dataprovider {
 
     WebDriver driver;
 
@@ -75,7 +76,7 @@ public class DataProvider {
 
     // ✅ DataProvider method supplies multiple sets of email-password combinations.
     // Each array represents a single test run with one set of login credentials.
-    @org.testng.annotations.DataProvider(name = "login", indices = {0,4})
+    @DataProvider(name = "login", indices = {0,4})
     Object[][] loginData() {
         Object data[][] = {
                 {"nivangunevrushali.vn@gmail.com", "Vrusha123$"},  // ✅ valid credentials (will pass)
