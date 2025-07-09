@@ -25,7 +25,7 @@ public class XML_ParallelTesting {
     void setUp(String br) {
         // Launching a new Chrome browser instance
 
-        switch (br)
+        switch (br.toLowerCase())
         {
             case "chrome":driver = new ChromeDriver();
             break;
