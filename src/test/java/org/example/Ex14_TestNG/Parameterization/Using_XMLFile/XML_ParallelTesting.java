@@ -1,6 +1,5 @@
 package org.example.Ex14_TestNG.Parameterization.Using_XMLFile;
 
-import org.apache.poi.ss.formula.atp.Switch;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -16,73 +15,73 @@ import java.time.Duration;
 
 public class XML_ParallelTesting {
 
-    WebDriver driver; // Declaring WebDriver instance
+    WebDriver driver; // ✅ WebDriver instance (non-static) to avoid conflicts during parallel execution
 
     // ✅ This method runs once before any @Test method in the class.
-    // It is used to launch the browser and perform basic setup like timeouts and opening the application URL.
+    // ✅ @Parameters is used to receive the browser name from XML for cross-browser parallel execution
     @BeforeClass
     @Parameters({"browser"})
     void setUp(String br) {
-        // Launching a new Chrome browser instance
 
-        switch (br.toLowerCase())
-        {
-            case "chrome":driver = new ChromeDriver();
-            break;
+        // ✅ Launching the browser based on the value passed from the XML file
+        // ✅ Each thread will run with its own instance of WebDriver for isolation
+        switch (br.toLowerCase()) {
+            case "chrome":
+                driver = new ChromeDriver();
+                break;
 
-            case "edge": driver = new EdgeDriver();
-            break;
+            case "edge":
+                driver = new EdgeDriver();
+                break;
 
-            case "firefox": driver = new FirefoxDriver();
-            break;
+            case "firefox":
+                driver = new FirefoxDriver();
+                break;
 
             default:
-                System.out.println("Invalid browser");
+                System.out.println("❌ Invalid browser passed from XML.");
                 return;
         }
 
+        // ✅ Ensuring all windows start maximized
         driver.manage().window().maximize();
 
-        // Setting implicit wait to handle dynamic elements (max wait 10 seconds)
+        // ✅ Implicit wait to handle dynamic loading elements
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        // Opening the login page of the OrangeHRM demo website
+        // ✅ Navigating to the login page of OrangeHRM demo site
         driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
     }
 
-    // ✅ This test validates whether the OrangeHRM logo is displayed on the login page
+    // ✅ Test 1: Verifies logo presence on the login screen
+    // 🔁 Will run in parallel across different browsers if defined in XML suite
     @Test(priority = 1)
     void testLogo() {
-        // Locating the logo element and checking if it's visible
         boolean logo = driver.findElement(By.xpath("//div[@class='orangehrm-login-branding']")).isDisplayed();
-
-        // Verifying the logo is displayed; if not, the test will fail
         Assert.assertEquals(logo, true, "❌ Logo is not displayed on the login page.");
     }
 
-    // ✅ This test verifies the page title of the OrangeHRM login page
+    // ✅ Test 2: Verifies that the page title is correct
+    // ✅ Useful for confirming navigation and page loading during parallel tests
     @Test(priority = 2)
     void testTitle() {
-        // Getting the current page title and comparing it to the expected value
         Assert.assertEquals(driver.getTitle(), "OrangeHRM", "❌ Page title does not match.");
     }
 
-    // ✅ This test checks whether the current URL is correct
+    // ✅ Test 3: Confirms the browser is on the correct login page
     @Test(priority = 3)
-    void testURL() {
-        // Comparing current URL with the expected login page URL
+    void testURL() throws InterruptedException {
         Assert.assertEquals(
                 driver.getCurrentUrl(),
                 "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
                 "❌ URL mismatch for the login page."
         );
+        Thread.sleep(2000); // (Only for demo — use WebDriverWait in real projects)
     }
 
-    // ✅ This method runs after all @Test methods are completed
-    // It is used to clean up the browser and close the WebDriver session
+    // ✅ This runs once after all tests — closes browser session for this thread
     @AfterClass
     void tearDown() {
-        // Closing the browser
-        driver.quit();
+        driver.quit(); // ✅ Important: Quits the browser only for the current thread/test
     }
 }
