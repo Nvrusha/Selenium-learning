@@ -4,7 +4,7 @@
 <!-- ✅ TestNG Suite for Parallel Cross-Browser Testing -->
 <!-- To enable actual parallel execution, add: parallel="tests" and thread-count in the suite tag -->
 
-<suite name="All Test Suite" preserve-order="true" parallel="tests">
+<suite name="All Test Suite" preserve-order="true" parallel="tests" thread-count="3">
 
     <!-- ✅ Test block for Chrome browser -->
     <!-- Each <test> will run in a separate thread for true parallel execution -->
