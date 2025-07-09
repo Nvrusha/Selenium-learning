@@ -41,8 +41,7 @@ public class XML_ParallelTesting {
                 return;
         }
 
-
-
+        driver.manage().window().maximize();
 
         // Setting implicit wait to handle dynamic elements (max wait 10 seconds)
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));

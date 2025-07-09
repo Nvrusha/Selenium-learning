@@ -1,4 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd"><suite name="All Test Suite"><test verbose="2" preserve-order="true" name="C:/Users/visha/IdeaProjects/Selenium/src/test/java/org/example/Ex14_TestNG/Parameterization/Using_XMLFile/XML_ParallelTesting.java">
-    <parameter name="browser" value="chrome"></parameter>
-    <classes><class name="org.example.Ex14_TestNG.Parameterization.Using_XMLFile.XML_ParallelTesting"><methods><include name="testLogo"/><include name="testTitle"/><include name="testURL"/></methods></class></classes></test></suite>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<!-- ✅ Suite definition -->
+<suite name="All Test Suite" verbose="1" preserve-order="true">
+
+    <!-- ✅ Test block: Represents 1 set of tests, can include multiple classes -->
+    <test name="OrangeHRM Parallel Test - Chrome">
+
+        <!-- ✅ Parameter to pass browser name to the test class -->
+        <parameter name="browser" value="chrome"/>
+
+        <!-- ✅ Classes under this test -->
+        <classes>
+            <class name="org.example.Ex14_TestNG.Parameterization.Using_XMLFile.XML_ParallelTesting">
+                <methods>
+                    <include name="testLogo"/>
+                    <include name="testTitle"/>
+                    <include name="testURL"/>
+                </methods>
+            </class>
+        </classes>
+
+    </test>
+
+    <!-- ✅ Test block: Represents 1 set of tests, can include multiple classes -->
+    <test name="OrangeHRM Parallel Test - Edge">
+
+        <!-- ✅ Parameter to pass browser name to the test class -->
+        <parameter name="browser" value="edge"/>
+
+        <!-- ✅ Classes under this test -->
+        <classes>
+            <class name="org.example.Ex14_TestNG.Parameterization.Using_XMLFile.XML_ParallelTesting">
+                <methods>
+                    <include name="testLogo"/>
+                    <include name="testTitle"/>
+                    <include name="testURL"/>
+                </methods>
+            </class>
+        </classes>
+
+    </test>
+
+    <!-- ✅ Test block: Represents 1 set of tests, can include multiple classes -->
+    <test name="OrangeHRM Parallel Test - Firefox">
+
+        <!-- ✅ Parameter to pass browser name to the test class -->
+        <parameter name="browser" value="firefox"/>
+
+        <!-- ✅ Classes under this test -->
+        <classes>
+            <class name="org.example.Ex14_TestNG.Parameterization.Using_XMLFile.XML_ParallelTesting">
+                <methods>
+                    <include name="testLogo"/>
+                    <include name="testTitle"/>
+                    <include name="testURL"/>
+                </methods>
+            </class>
+        </classes>
+
+    </test>
+
+</suite>
