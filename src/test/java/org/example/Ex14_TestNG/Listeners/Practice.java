@@ -3,68 +3,61 @@ package org.example.Ex14_TestNG.Listeners;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
 
 public class Practice {
 
-    WebDriver driver; // ✅ WebDriver instance (non-static) to avoid conflicts during parallel execution
+    WebDriver driver; // ✅ WebDriver instance used by listener methods (e.g., for screenshots on failure)
 
-    // ✅ This method runs once before any @Test method in the class.
+    // ✅ Setup method runs once before the first @Test method in the class
+    // Listeners like ITestListener’s onStart() would be triggered before this if used
     @BeforeClass
     void setUp() throws InterruptedException {
+        driver = new ChromeDriver(); // ✅ Launch browser (listener can log this setup)
 
-        // ✅ Launching the browser
-        driver = new ChromeDriver();
+        driver.manage().window().maximize(); // ✅ Maximize window
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); // ✅ Set implicit wait
 
-        // ✅ Ensuring all windows start maximized
-        driver.manage().window().maximize();
-
-        // ✅ Implicit wait to handle dynamic loading elements
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-        // ✅ Navigating to the login page of OrangeHRM demo site
-        driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-
-        Thread.sleep(3000);
+        driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"); // ✅ Navigate to login page
+        Thread.sleep(3000); // ✅ (For demo purpose only — listener can log slow page load if needed)
     }
 
-    // ✅ Test 1: Verifies logo presence on the login screen
-    // 🔁 Will run in parallel across different browsers if defined in XML suite
+    // ✅ Test case 1: Check logo presence
+    // If this test fails, ITestListener’s onTestFailure() can be used to capture screenshot/log details
     @Test(priority = 1)
     void testLogo() {
         boolean logo = driver.findElement(By.xpath("//div[@class='orangehrm-login-branding']")).isDisplayed();
         Assert.assertEquals(logo, true, "❌ Logo is not displayed on the login page.");
     }
 
-    // ✅ Test 2: Verifies that the page title is correct
-    // ✅ Useful for confirming navigation and page loading during parallel tests
+    // ✅ Test case 2: Validate page title
+    // If skipped due to testURL failure, listener’s onTestSkipped() will be triggered
     @Test(priority = 2, dependsOnMethods = {"testURL"})
     void testTitle() {
         Assert.assertEquals(driver.getTitle(), "OrangeHRM", "❌ Page title does not match.");
     }
 
-    // ✅ Test 3: Confirms the browser is on the correct login page
+    // ✅ Test case 3: Validate login page URL
+    // Listener can capture actual vs expected values if test fails
     @Test(priority = 3)
     void testURL() throws InterruptedException {
         Assert.assertEquals(
                 driver.getCurrentUrl(),
-                "https://opensource-demo.orangehrmlive.com/web/index.php/auth/logi",
+                "https://opensource-demo.orangehrmlive.com/web/index.php/auth/logi", // (Intentional mistake to demonstrate listener on failure)
                 "❌ URL mismatch for the login page."
         );
-        Thread.sleep(2000); // (Only for demo — use WebDriverWait in real projects)
+        Thread.sleep(2000); // (Avoid in real test cases — listener can log slow responses)
     }
 
-    // ✅ This runs once after all tests — closes browser session for this thread
+    // ✅ Runs once after all @Test methods complete
+    // Listener’s onFinish() would run after this for final reporting/logging
     @AfterClass
     void tearDown() {
-        driver.quit(); // ✅ Important: Quits the browser only for the current thread/test
+        driver.quit(); // ✅ Close browser; can also be handled in listener’s onFinish() if needed
     }
 }
