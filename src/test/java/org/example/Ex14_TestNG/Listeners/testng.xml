@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<!-- ✅ This suite groups all tests together and provides listener configuration -->
+<suite name="All Test Suite" verbose="2" preserve-order="true">
+
+    <!-- ✅ Listeners block: Registers a custom listener class to observe test lifecycle events
+         Make sure to provide the fully qualified class name -->
+    <listeners>
+        <listener class-name="org.example.Ex14_TestNG.Listeners.MyListener"/>
+    </listeners>
+
+    <!-- ✅ Each <test> block can define its own set of classes/methods and runs in a separate TestNG context -->
+    <test name="Listener Practice Test">
+        <classes>
+            <!-- ✅ This class contains the @Test methods that listener will observe -->
+            <class name="org.example.Ex14_TestNG.Listeners.Practice">
+                <methods>
+                    <!-- ✅ Including individual test methods explicitly -->
+                    <include name="testLogo"/>
+                    <include name="testURL"/>
+                    <include name="testTitle"/> <!-- ⚠️ Include this to track skipped test! -->
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
