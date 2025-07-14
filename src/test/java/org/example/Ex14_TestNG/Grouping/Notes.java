@@ -26,7 +26,7 @@ public class Notes {
      void testAddToCart() { }
 
      ------------------------------------------------
-     ✅ Running Groups using testng.xml
+     ✅ Running Groups using extentreports.xml
 
      👉 Create XML suite and specify which group(s) to include or exclude.
 

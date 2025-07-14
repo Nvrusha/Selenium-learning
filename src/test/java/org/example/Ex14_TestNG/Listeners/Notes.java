@@ -32,7 +32,7 @@ public class Notes {
      - Using @Listeners annotation:
        @Listeners(MyListenerClass.class)
        public class MyTestClass { ... }
-     - OR using testng.xml:
+     - OR using extentreports.xml:
        <listeners>
          <listener class-name="your.package.MyListenerClass"/>
        </listeners>

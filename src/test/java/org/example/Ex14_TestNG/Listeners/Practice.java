@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 
 // ✅ This is an alternative way to implement a TestNG listener directly in the test class.
-// ✅ Instead of declaring the listener in the testng.xml file, we can attach it here using the @Listeners annotation.
+// ✅ Instead of declaring the listener in the extentreports.xml file, we can attach it here using the @Listeners annotation.
 // ✅ It tells TestNG to use the specified listener class (MyListener) for this test class only.
 // ✅ This approach is useful when you want listener behavior limited to specific test classes or for quick debugging.
 @Listeners(org.example.Ex14_TestNG.Listeners.MyListener.class)

@@ -34,8 +34,8 @@ TestNG is a testing framework inspired by JUnit and NUnit, designed to simplify 
 ─────────────────────────────────────────────
 @BeforeSuite     → runs before all test cases in suite
 @AfterSuite      → runs after all test cases in suite
-@BeforeTest      → runs before <test> tag in testng.xml
-@AfterTest       → runs after <test> tag in testng.xml
+@BeforeTest      → runs before <test> tag in extentreports.xml
+@AfterTest       → runs after <test> tag in extentreports.xml
 @BeforeClass     → runs before the first method in the current class
 @AfterClass      → runs after all test methods in the class
 @BeforeMethod    → runs before each test method
