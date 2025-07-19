@@ -44,7 +44,7 @@ public class LoginPage {
      * Method to click the login button
      * @param btn - parameter not used (you can remove it for clarity)
      */
-    public void clickBtn(String btn){
+    public void clickBtn(){
         driver.findElement(loginBtn).click();
     }
 
