@@ -3,6 +3,7 @@ package org.example.Page_Object_Model.Using_PageFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
@@ -35,6 +36,12 @@ public class LoginPage1 {
 
     @FindBy(tagName = "a")
     List<WebElement> links;  // Example of locating multiple elements (optional use)
+
+    // 🔍 Example of using @FindBy with 'how' attribute (alternative syntax)
+    // Locates the "Forgot Password" link on the login page using XPath
+    @FindBy(how = How.XPATH, using = "//p[@class=\"oxd-text oxd-text--p orangehrm-login-forgot-header\"]")
+    WebElement forgotPwd;
+
 
     // 🧪 Reusable Page Actions (Methods to operate on elements)
 
