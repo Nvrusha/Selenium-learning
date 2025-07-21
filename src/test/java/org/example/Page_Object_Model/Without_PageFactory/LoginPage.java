@@ -1,4 +1,4 @@
-package org.example.Page_Object_Model;
+package org.example.Page_Object_Model.Without_PageFactory;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
