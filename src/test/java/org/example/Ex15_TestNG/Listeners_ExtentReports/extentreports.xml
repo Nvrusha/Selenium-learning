@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd"><suite name="All Test Suite">
+    <listeners>
+        <listener class-name="org.example.Ex15_TestNG.Listeners_ExtentReports.ExtentReportsManager"></listener>
+    </listeners>
+    <test verbose="2" preserve-order="true" name="C:\Users\visha\IdeaProjects\Selenium\src\test\java\org\example\Ex14_TestNG\Listeners_ExtentReports"><classes><class name="org.example.Ex15_TestNG.Listeners_ExtentReports.Practice"><methods><include name="testLogo"/><include name="testURL"/><include name="testTitle"/></methods></class></classes></test></suite>
