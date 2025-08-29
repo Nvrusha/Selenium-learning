@@ -1,4 +1,4 @@
-package org.example.Projects.moneycontrol;
+package org.example.Ex17_Projects.moneycontrol;
 
 import org.example.Ex13_DataDrivenTesting.ExcelUtils;
 import org.openqa.selenium.By;

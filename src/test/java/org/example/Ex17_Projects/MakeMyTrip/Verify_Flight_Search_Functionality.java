@@ -1,4 +1,4 @@
-package org.example.Projects.MakeMyTrip;
+package org.example.Ex17_Projects.MakeMyTrip;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
